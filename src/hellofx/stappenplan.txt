@@ -1,0 +1,44 @@
+/**************************************************/
+/* 7-stappenplan om dit project te personaliseren */
+/**************************************************/
+
+1. Pas de naam van het project en de bijhorende map aan.
+    - Klik met de rechtermuistoets op 'PrefabFXMLProject'
+    - Kies in het menu voor Rename...
+    - Vink ook 'Also Rename Project Folder' aan.
+
+2. Pas de naam aan van de map met de broncode
+    - Klik met de rechtermuistoets op helloFX 
+    - Kies in het menu voor Refactor -> Rename... (of Ctrl-R)
+      en kies een naam die bij je project past
+
+3. Pas de naam van de Controller aan zodat men in de naam kan zien
+   wat de Controller controlleert. 
+   Meestal bevat dit de naam van het model, bv. BreukController of FXMLBreukController.
+    - Klik met de rechtermuistoets op Controller.java 
+    - Kies in het menu voor Refactor -> Rename... (of Ctrl-R)
+      en kies een naam die bij je project past
+
+4. Pas de naam van de FMXLView aan zodat je tussen FXML en View
+   de naam zet van wat je hier toont in de FXML.
+   Voor kleine toepassingen is dat de naam van het model, 
+   maar in grotere projecten kan je meer FXMLViews hebben en dus meer keuzes.
+    - Klik met de rechtermuistoets op die FXML en kies voor Rename...
+    - Dubbelklik op het bestand zodat het opent in de SceneBuilder
+        + klik links het paneel Hierarchy dicht
+        + klik links het paneel Controller open
+        + selecteer bij de Controller class de klasse uit stap 3
+        + druk op Ctrl-S om de wijzigingen te bewaren
+    - Dubbelklik op Main.java
+        + pas op regel 14 de bestandsnaam aan
+            FXMLLoader lader = new FXMLLoader(getClass().getResource("FXMLView.fxml"));
+
+5. Als je een doorlevend model hebt (vanaf werkcollege 3.2)
+    + Maak de nodige klassen voor het model.
+    + Pas de controller aan met een setModel()-methode voor de topklasse van het model
+    + Maak in Main.java een object aan van deze topklasse
+      en injecteer die in de controller.
+
+6. Pas Model, View en Controller verder aan totdat je applicatie doet wat ze moet doen.
+
+7. Wees fier op jezelf!
