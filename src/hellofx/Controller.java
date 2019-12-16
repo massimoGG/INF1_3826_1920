@@ -6,9 +6,6 @@ import javafx.scene.control.Label;
 public class Controller {
 
     public void initialize() {
-		//Dit is een foute syntax// Java :D
-                        //diite is nu wel eens juiste :p
-						Mihiel stinkt
-						En valeria is :D
+		
     }
 }
