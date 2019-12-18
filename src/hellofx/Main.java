@@ -5,11 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.geometry.Point2D;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
+        
         // FXML View
         FXMLLoader lader = new FXMLLoader(getClass().getResource("FXMLView.fxml"));
         Parent root = lader.load();
@@ -24,7 +26,16 @@ public class Main extends Application {
         stage.show();
     }
 
-
+    private void tick() {
+        // De tick functie die minstens 1/20 per sec gerunt wordt
+        
+    }
+    
+    private void render() {
+        // De render functie die minstens 1/60 keren pe rseconden gerunt wordt
+        
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }
