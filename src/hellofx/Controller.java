@@ -7,7 +7,8 @@ public class Controller {
 
     public void initialize() {
 		//dit is een test 2.0]
-                Michiel stinkt niet waar massimo
+               // Michiel stinkt niet waar massimo
+                        
                         
     }
 }
