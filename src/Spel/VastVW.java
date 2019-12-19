@@ -47,9 +47,10 @@ public class VastVW {
         return dy;
     }
     
-    public Rectangle vorm(){
-        return new Rectangle(x,y,dx,dy);
+    public Rectangle vorm(Oorsprong oorsprong){
+        return new Rectangle(oorsprong.getX()+x,oorsprong.getY()+y,dx,dy);
     }
+
 
     
     

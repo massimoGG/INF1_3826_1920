@@ -14,6 +14,7 @@ public class Main extends Application {
         
         //Model aanmaken
         PersoonModel model = new PersoonModel();
+        Oorsprong oorsprong = new Oorsprong(200,200);
         
         // FXML View
         FXMLLoader lader = new FXMLLoader(getClass().getResource("FXMLView.fxml"));
@@ -21,7 +22,7 @@ public class Main extends Application {
         
         // Controller
         Controller controller = lader.getController();
-        controller.setModel(model);
+        controller.setModel(model, oorsprong);
         
         // hoofdvenster
         Scene scene = new Scene(root, 800, 600);

@@ -5,6 +5,7 @@
  */
 package Spel;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
@@ -14,13 +15,15 @@ import javafx.scene.shape.Rectangle;
  */
 public class SpelView extends Region{
     private PersoonModel pModel;
+    private VastVW vastVW;
+    private Oorsprong oorsprong;
     
     
-    VastVW vastVW = new VastVW(200, 200, 20, 20);
 
-    public SpelView(PersoonModel pModel) {
+    public SpelView(PersoonModel pModel, VastVW vastVW, Oorsprong oorsprong) {
         this.pModel = pModel;
-        
+        this.vastVW = vastVW;
+        this.oorsprong = oorsprong;
         
         update();
         
@@ -28,10 +31,11 @@ public class SpelView extends Region{
     
     public void update(){
         getChildren().clear();
-        Rectangle persoon1 = new Rectangle(pModel.getX(), pModel.getY(), 10,10);
+        Rectangle persoon1 = new Rectangle(395, 195, 10,10);
         
         
-        Rectangle vorm = vastVW.vorm();
+        Rectangle vorm = vastVW.vorm(oorsprong);
+        vorm.setFill(Color.BLUE);
         
         
         

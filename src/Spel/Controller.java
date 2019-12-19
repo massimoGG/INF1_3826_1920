@@ -31,31 +31,35 @@ public class Controller {
         assert paneMain != null : "fx:id=\"paneMain\" was not injected: check your FXML file 'FXMLView.fxml'.";
         
         paneMain.setOnKeyPressed(e -> beweeg(e));
+        btnReset.setOnAction(e -> reset());
 
     }
     private SpelView view;
-    
-    public void setModel(PersoonModel pModel){
+    private Oorsprong oorsprong;
+    private VastVW vastVW;
+    public void setModel(PersoonModel pModel, Oorsprong oorsprong){
         this.pModel = pModel;
-        view = new SpelView(pModel);
+        this.oorsprong = oorsprong;
+        VastVW vastVW = new VastVW(200, 200, 20, 20);
+        view = new SpelView(pModel, vastVW, oorsprong);
         paneMain.getChildren().add(view);
     }
     public void beweeg(KeyEvent e){
         switch(e.getCode()){
-            case LEFT:
-                pModel.links();
-                update();
-                break;
             case RIGHT:
-                pModel.rechts();
+                oorsprong.links();
                 update();
                 break;
-            case UP:
-                pModel.omhoog();
+            case LEFT:
+                oorsprong.rechts();
                 update();
                 break;
             case DOWN:
-                pModel.omlaag();
+                oorsprong.omhoog();
+                update();
+                break;
+            case UP:
+                oorsprong.omlaag();
                 update();
                 break;
             
@@ -70,5 +74,8 @@ public class Controller {
     public void update(){
         view.update();
     }
-    
+    public void reset(){
+        oorsprong.reset();
+        update();
+    }
 }
