@@ -7,8 +7,13 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
+<<<<<<< Updated upstream
 <project name="JavaFX-UHasselt-FIIW-Game" default="default" basedir=".">
     <description>Builds, tests, and runs the project JavaFX-UHasselt-FIIW-Game.</description>
+=======
+<project name="SchoolGame" default="default" basedir=".">
+    <description>Builds, tests, and runs the project SchoolGame.</description>
+>>>>>>> Stashed changes
     <import file="nbproject/build-impl.xml"/>
     <!--
 
@@ -58,7 +63,11 @@
 
     An example of overriding the target for project execution could look like this:
 
+<<<<<<< Updated upstream
         <target name="run" depends="JavaFX-UHasselt-FIIW-Game-impl.jar">
+=======
+        <target name="run" depends="SchoolGame-impl.jar">
+>>>>>>> Stashed changes
             <exec dir="bin" executable="launcher.exe">
                 <arg file="${dist.jar}"/>
             </exec>
