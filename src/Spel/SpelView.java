@@ -14,9 +14,14 @@ import javafx.scene.shape.Rectangle;
  */
 public class SpelView extends Region{
     private PersoonModel pModel;
+    
+    
+    VastVW vastVW = new VastVW(200, 200, 20, 20);
 
     public SpelView(PersoonModel pModel) {
         this.pModel = pModel;
+        
+        
         update();
         
     }
@@ -25,6 +30,12 @@ public class SpelView extends Region{
         getChildren().clear();
         Rectangle persoon1 = new Rectangle(pModel.getX(), pModel.getY(), 10,10);
         
+        
+        Rectangle vorm = vastVW.vorm();
+        
+        
+        
+        getChildren().add(vorm);
         getChildren().add(persoon1);
     }
     
