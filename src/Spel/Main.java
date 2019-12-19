@@ -1,4 +1,4 @@
-package hellofx;
+package Spel;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,12 +12,16 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         
+        //Model aanmaken
+        PersoonModel model = new PersoonModel();
+        
         // FXML View
         FXMLLoader lader = new FXMLLoader(getClass().getResource("FXMLView.fxml"));
         Parent root = lader.load();
         
         // Controller
         Controller controller = lader.getController();
+        controller.setModel(model);
         
         // hoofdvenster
         Scene scene = new Scene(root, 800, 600);
