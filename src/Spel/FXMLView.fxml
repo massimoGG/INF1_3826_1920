@@ -3,9 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Spel.Controller">
+<AnchorPane fx:id="paneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: GRAY;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Spel.Controller">
    <children>
-      <Button fx:id="btnReset" alignment="CENTER" focusTraversable="false" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Reset" />
-      <AnchorPane fx:id="paneMain" focusTraversable="true" layoutX="14.0" layoutY="46.0" prefHeight="338.0" prefWidth="572.0" />
+      <AnchorPane fx:id="paneGame" focusTraversable="true" layoutX="10.0" layoutY="50.0" prefHeight="740.0" prefWidth="1260.0">
+         <children>
+            <Button fx:id="btnPlay" focusTraversable="false" layoutX="611.0" layoutY="358.0" mnemonicParsing="false" text="Play" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -25,10 +25,11 @@ public class Main extends Application {
         controller.setModel(model, oorsprong);
         
         // hoofdvenster
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1280, 800);
         stage.setScene(scene);
-        stage.setTitle("Prefab FXML applicatie");
+        stage.setTitle("Prison game");
         stage.show();
+        controller.setStage(stage);
     }
 
     private void tick() {
