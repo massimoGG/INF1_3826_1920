@@ -5,7 +5,7 @@
 - GameModel         -> Physics of the game
 - GameView          -> Renderer of the game
 - GameController    -> Manages previous files, Menu, User interaction
-- 
+
 
 ## TODO
 - [ ] A working game ;D
