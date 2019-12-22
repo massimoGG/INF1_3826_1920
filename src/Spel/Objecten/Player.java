@@ -1,4 +1,4 @@
-package Spel;
+package Spel.Objecten;
 
 import javafx.scene.paint.Color;
 
@@ -16,8 +16,14 @@ public class Player extends Entity {
         return Color.BLUE;
     }
     
+    // Positie van de speler (in grids) op de volledige map
     private int x;
     private int y;
+    
+    public Player(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
     
     public int getX() {
         return this.x;

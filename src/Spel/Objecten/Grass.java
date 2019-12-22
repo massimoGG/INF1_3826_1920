@@ -1,4 +1,4 @@
-package Spel;
+package Spel.Objecten;
 
 import javafx.scene.paint.Color;
 
@@ -6,12 +6,12 @@ import javafx.scene.paint.Color;
  *
  * @author massi
  */
-public class Wall extends Entity {
+public class Grass extends Entity {
     public boolean walkable() {
-        return false;
+        return true;
     }
 
     public Color getTexture() {
-        return Color.LIGHTGRAY;
+        return Color.GREEN;
     }
 }
