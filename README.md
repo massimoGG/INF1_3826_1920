@@ -13,6 +13,9 @@
 - [ ] Harder levels
 - [ ] Multiplayer support?
 
+## Installation progress
+* No idea. We're using netbeans which does it all for us :)
+
 ## Release History
 
 * 0.0.1
