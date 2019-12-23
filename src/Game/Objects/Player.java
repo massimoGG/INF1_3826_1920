@@ -1,28 +1,12 @@
-package Spel.Objecten;
+package Game.Objects;
 
-import javafx.scene.paint.Color;
-
-/**
- *
- * @author massi
- */
 public class Player extends Entity {
-    
-    public boolean walkable() {
-        return true;
-    }
-
-    public Color getTexture() {
-        return Color.BLUE;
-    }
-    
-    // Positie van de speler (in grids) op de volledige map
-    private int x;
-    private int y;
     
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
+        this.dx = 0;
+        this.dy = 0;
     }
     
     public int getX() {
