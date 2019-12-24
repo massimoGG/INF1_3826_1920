@@ -13,24 +13,39 @@ public class GameModel {
     private Stage stage;
     private GameView view;
     
-    // De volledige map
-    public Entity[][] map;
+    private int maxEntities = 100;
+    private Entity[] entities;
+    public Entity[] getEntities() {
+        return entities;
+    }
     // Onze speler
-    public Player player;
+    private static Player player;
+    public Player getPlayer() {return player;}
     
     // Afmetingen van het scherm
-    public int maxHeight, maxWidth;
-    // Afmetingen van de map
-    public int mapMaxHeight=50, mapMaxWidth=50;
-    public int tileSize = 16;
-    
-    public void GameModel() {
+    public double minX = 0,maxX;
+
+    public GameModel() {        
         // Maak een nieuwe speler aan
-        player = new Player(1,1);
+        player = new Player(50,50);
+        entities = new Entity[maxEntities];
+        
     }
     
     // Tick update for entities
     public void update() {
+        if (player.getX()+player.getdx() > minX && player.getX()+player.getdx() < maxX) {
+            player.setX(player.getX()+player.getdx());
+        }
+    }
+    
+    // Add bullets
+    public void addEntity() {
+        
+    }
+    
+    // Add enemy
+    public void addEnemy() {
         
     }
     
@@ -39,19 +54,11 @@ public class GameModel {
             switch (e.getCode()) {
                 case LEFT:
                 case A:
-
-                    break;
-                case UP:
-                case W:
-
+                    player.setdx(-5);
                     break;
                 case RIGHT:
                 case D:
-
-                    break;
-                case DOWN:
-                case S:
-
+                    player.setdx(5);
                     break;
                 case ESCAPE:
                     // Escape -> Close game
@@ -60,8 +67,21 @@ public class GameModel {
             }
         } catch (Exception a) {}
     }
+    public void demove(KeyEvent e) {
+        try {
+            switch (e.getCode()) {
+                case LEFT:
+                case A:
+                case RIGHT:
+                case D:
+                    player.setdx(0);
+                    break;
+            }
+        } catch (Exception a) {}
+    }
 
     public void setStage(Stage stage) {
         this.stage = stage;
+        player.setY(stage.getHeight()-150);
     }
 }

@@ -25,7 +25,7 @@ public class GameController {
     private Button btnPlay;
 
     @FXML
-    private Label lblScore;
+    public Label lblScore;
 
     @FXML
     void initialize() {
@@ -45,11 +45,21 @@ public class GameController {
                 // Start het spel! 
                 view = new GameView(model);
                 paneGame.getChildren().add(view);
+                model.maxX = (int)paneGame.getWidth() - 20;
+                
 
+                // De updater (50 TPS)
+                Core core = new Core(model,view,this);
+                Thread t = new Thread(core);
+                t.setDaemon(true);
+                t.start();
+              
                 // Key events nog accepteren wanneer het spel gestart is
                 paneGame.setOnKeyPressed(ev -> {
                     model.move(ev);
-                    view.render();
+                });
+                paneGame.setOnKeyReleased(ev -> {
+                    model.demove(ev);
                 });
                 
             } else
