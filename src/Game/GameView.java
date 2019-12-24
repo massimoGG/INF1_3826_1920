@@ -1,7 +1,7 @@
 package Game;
 
 import Game.Objects.Entity;
-import Game.Objects.Player;
+import Game.Objects.Bullet;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -21,7 +21,14 @@ public class GameView extends Region{
         getChildren().clear();
         
         for (Entity e : model.getEntities()) {
-            
+            if (e!=null) {
+                if (e instanceof Bullet) {
+                    Rectangle r = new Rectangle();
+                    r.setX(e.getX());
+                    r.setY(e.getY());
+                    getChildren().add(r);
+                }
+            }
         }
         
         Polyline pl = new Polyline();

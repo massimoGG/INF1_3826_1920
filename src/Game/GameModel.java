@@ -13,12 +13,11 @@ public class GameModel {
     private Stage stage;
     private GameView view;
     
-    // De volledige map
+    private int maxEntities = 100;
     private Entity[] entities;
-    public Entity[] getEntites() {
+    public Entity[] getEntities() {
         return entities;
     }
-    public final int updated = 20; // 20 ms
     // Onze speler
     private static Player player;
     public Player getPlayer() {return player;}
@@ -29,6 +28,8 @@ public class GameModel {
     public GameModel() {        
         // Maak een nieuwe speler aan
         player = new Player(50,50);
+        entities = new Entity[maxEntities];
+        
     }
     
     // Tick update for entities
@@ -38,7 +39,13 @@ public class GameModel {
         }
     }
     
+    // Add bullets
     public void addEntity() {
+        
+    }
+    
+    // Add enemy
+    public void addEnemy() {
         
     }
     
