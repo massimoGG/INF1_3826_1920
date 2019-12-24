@@ -20,6 +20,10 @@ public class GameView extends Region{
     public void render() {
         getChildren().clear();
         
+        for (Entity e : model.getEntities()) {
+            
+        }
+        
         Polyline pl = new Polyline();
         pl.getPoints().addAll(new Double[] {
             10+model.getPlayer().getX(), model.getPlayer().getY(),

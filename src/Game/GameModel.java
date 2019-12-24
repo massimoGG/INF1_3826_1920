@@ -14,17 +14,21 @@ public class GameModel {
     private GameView view;
     
     // De volledige map
-    private Entity[][] entities;
+    private Entity[] entities;
+    public Entity[] getEntites() {
+        return entities;
+    }
+    public final int updated = 20; // 20 ms
     // Onze speler
     private static Player player;
     public Player getPlayer() {return player;}
     
     // Afmetingen van het scherm
-    public double minX = 10,maxX;
+    public double minX = 0,maxX;
 
     public GameModel() {        
         // Maak een nieuwe speler aan
-        player = new Player(50,200);
+        player = new Player(50,50);
     }
     
     // Tick update for entities
@@ -49,10 +53,6 @@ public class GameModel {
                 case D:
                     player.setdx(5);
                     break;
-                case SPACE:
-                    // SHOOT!
-                    // Addentity
-                    break;
                 case ESCAPE:
                     // Escape -> Close game
                     stage.close();
@@ -69,13 +69,12 @@ public class GameModel {
                 case D:
                     player.setdx(0);
                     break;
-                case SPACE:
-                    break;
             }
         } catch (Exception a) {}
     }
 
     public void setStage(Stage stage) {
         this.stage = stage;
+        player.setY(stage.getHeight()-150);
     }
 }
