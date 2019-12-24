@@ -14,6 +14,7 @@ public class Core implements Runnable {
     
     @Override
     public void run() {
+        int err = 0;
         while (true) {
             try {
                 // Run dit in de JavaFX thread
@@ -25,7 +26,12 @@ public class Core implements Runnable {
                  Thread.sleep(20);
                 // Spawn a new enemy
             }catch(Exception e) {
-                System.out.println("e: "+e.getMessage());
+                err++;
+                System.out.println("ERROR : run() : "+e.getMessage());
+                if (err > 100){
+                    System.out.println("ERROR: run() : Too many errors! :(");
+                    return;
+                }
             }
         }
     }

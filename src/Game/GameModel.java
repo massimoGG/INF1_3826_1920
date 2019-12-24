@@ -14,23 +14,27 @@ public class GameModel {
     private GameView view;
     
     // De volledige map
-    public Entity[][] map;
+    private Entity[][] entities;
     // Onze speler
-    public Player player;
+    private static Player player;
+    public Player getPlayer() {return player;}
     
     // Afmetingen van het scherm
-    public int maxHeight, maxWidth;
-    // Afmetingen van de map
-    public int mapMaxHeight=50, mapMaxWidth=50;
-    public int tileSize = 16;
-    
-    public void GameModel() {
+    public double minX = 10,maxX;
+
+    public GameModel() {        
         // Maak een nieuwe speler aan
-        player = new Player(1,1);
+        player = new Player(50,200);
     }
     
     // Tick update for entities
     public void update() {
+        if (player.getX()+player.getdx() > minX && player.getX()+player.getdx() < maxX) {
+            player.setX(player.getX()+player.getdx());
+        }
+    }
+    
+    public void addEntity() {
         
     }
     
@@ -39,23 +43,33 @@ public class GameModel {
             switch (e.getCode()) {
                 case LEFT:
                 case A:
-
-                    break;
-                case UP:
-                case W:
-
+                    player.setdx(-5);
                     break;
                 case RIGHT:
                 case D:
-
+                    player.setdx(5);
                     break;
-                case DOWN:
-                case S:
-
+                case SPACE:
+                    // SHOOT!
+                    // Addentity
                     break;
                 case ESCAPE:
                     // Escape -> Close game
                     stage.close();
+                    break;
+            }
+        } catch (Exception a) {}
+    }
+    public void demove(KeyEvent e) {
+        try {
+            switch (e.getCode()) {
+                case LEFT:
+                case A:
+                case RIGHT:
+                case D:
+                    player.setdx(0);
+                    break;
+                case SPACE:
                     break;
             }
         } catch (Exception a) {}

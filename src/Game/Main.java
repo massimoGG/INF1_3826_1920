@@ -25,7 +25,7 @@ public class Main extends Application {
         // hoofdvenster
         Scene scene = new Scene(root, 400, 600);
         stage.setScene(scene);
-        stage.setTitle("Surviv.io Clone");
+        stage.setTitle("Polygon game");
         stage.show();
         model.setStage(stage);
     }
