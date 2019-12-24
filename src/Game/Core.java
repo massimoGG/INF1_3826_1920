@@ -5,6 +5,8 @@ public class Core implements Runnable {
     GameModel model;
     GameView view;
     GameController controller;
+    private long dtime = 20;
+    private long totalTime = 0;
     
     // Constructor
     public Core(GameModel model, GameView view, GameController controller) {
@@ -21,6 +23,7 @@ public class Core implements Runnable {
                 // Run dit in de JavaFX thread
                 Platform.runLater(() -> {
                     view.render();
+                    
                     controller.lblScore.setText(""+model.getPlayer().getX());
                  });
                  model.update(); 
@@ -30,9 +33,13 @@ public class Core implements Runnable {
                 // Spawn a new enemy
                 // Algorithme voor random positie
                 
+                if (totalTime % 1000 ==0){ 
+                    // Plaats een random enemy
+                    
+                }
                 
-                
-                Thread.sleep(20); 
+                Thread.sleep(dtime); 
+                totalTime = totalTime + dtime;
             }catch(Exception e) {
                 err++;
                 System.out.println("ERROR : run() : "+e.getMessage());
