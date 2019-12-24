@@ -6,7 +6,8 @@ public class Core implements Runnable {
     GameView view;
     GameController controller;
     
-    public Core(GameModel model, GameView view,GameController controller) {
+    // Constructor
+    public Core(GameModel model, GameView view, GameController controller) {
         this.model = model;
         this.view = view;
         this.controller = controller;
@@ -23,8 +24,15 @@ public class Core implements Runnable {
                     controller.lblScore.setText(""+model.getPlayer().getX());
                  });
                  model.update(); 
-                 Thread.sleep(20);
+                 
+                 
+                // totale_tijd % 500 == 0 -> kogel schieten
                 // Spawn a new enemy
+                // Algorithme voor random positie
+                
+                
+                
+                Thread.sleep(20); 
             }catch(Exception e) {
                 err++;
                 System.out.println("ERROR : run() : "+e.getMessage());

@@ -45,15 +45,16 @@ public class GameController {
                 // Start het spel! 
                 view = new GameView(model);
                 paneGame.getChildren().add(view);
-                model.maxX = (int)paneGame.getWidth() - 20;
                 
-
+                // Maximum X
+                model.maxX = (int)paneGame.getWidth() - 10;
+                
                 // De updater (50 TPS)
-                Core core = new Core(model,view,this);
+                Core core = new Core(model, view, this);
                 Thread t = new Thread(core);
                 t.setDaemon(true);
                 t.start();
-              
+                
                 // Key events nog accepteren wanneer het spel gestart is
                 paneGame.setOnKeyPressed(ev -> {
                     model.move(ev);
@@ -75,13 +76,5 @@ public class GameController {
         //view = new GameView(model);
         // Key events
         paneGame.setFocusTraversable(true);
-    }
-    
-    public void toggleMenu() {
-        if (btnPlay.isVisible()) {
-            btnPlay.setVisible(false);
-        } else {
-            btnPlay.setVisible(true);
-        }
     }
 }
