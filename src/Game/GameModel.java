@@ -37,11 +37,46 @@ public class GameModel {
         if (player.getX()+player.getdx() > minX && player.getX()+player.getdx() < maxX) {
             player.setX(player.getX()+player.getdx());
         }
+        for (Entity e : entities) {
+            // Bullets can only go upwards or downwards. Not sideways. So no e.setX()
+            if (e!=null) e.setY(e.getY()+e.getdy());
+        }
+        rearrangeArray();
+    }
+    
+    public int getAmount() {
+        int t=0;
+        for (int i=0;i< entities.length; i++) {
+            if (entities[i]!=null) t++;
+        }
+        return t;
+    }
+    
+    // alle "dode" kogels verwijderen
+    private void rearrangeArray() {
+        for (int i=0;i<entities.length; i++) {
+            if (entities[i] !=null && entities[i].getY()<-100) {
+                // Off screen -> Remove it from the array
+                for (int j=i; j<entities.length-1;j++) {
+                    entities[j] = entities[j+1];
+                }
+                // Or just
+                //entities[i]=null;
+            }
+        }
     }
     
     // Add bullets
-    public void addEntity() {
+    public boolean addBullet() {
+        Bullet b = new Bullet(player.getX(),player.getY());
         
+        for (int i=0;i<entities.length; i++) {
+            if (entities[i]==null) {
+                entities[i]=b;
+                return true;
+            }
+        }
+        return false;
     }
     
     // Add enemy

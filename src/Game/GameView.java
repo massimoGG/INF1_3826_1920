@@ -24,21 +24,35 @@ public class GameView extends Region{
             if (e!=null) {
                 if (e instanceof Bullet) {
                     Rectangle r = new Rectangle();
-                    r.setX(e.getX());
-                    r.setY(e.getY());
+                    r.setX(e.getX()-3);
+                    r.setY(e.getY()-3);
+                    r.setWidth(6);
+                    r.setHeight(6);
+                    r.setFill(Color.RED);
                     getChildren().add(r);
+<<<<<<< Updated upstream
+=======
+                } else if (e instanceof Enemy) {
+                    // Tegen overgestelde v/d player?
+                    
+>>>>>>> Stashed changes
                 }
             }
         }
         
         Polyline pl = new Polyline();
+        int playerThickness = 10;
         pl.getPoints().addAll(new Double[] {
-            10+model.getPlayer().getX(), model.getPlayer().getY(),
-            0+model.getPlayer().getX(), 20+model.getPlayer().getY(),
-            20+model.getPlayer().getX(), 20+model.getPlayer().getY(),
+            model.getPlayer().getX(), -playerThickness+model.getPlayer().getY(),
+            -playerThickness+model.getPlayer().getX(), playerThickness+model.getPlayer().getY(),
+            playerThickness+model.getPlayer().getX(), playerThickness+model.getPlayer().getY(),
         });
         pl.setFill(Color.RED);
+<<<<<<< Updated upstream
         getChildren().add(pl); // p = rectangle ofzo
         
+=======
+        getChildren().add(pl);
+>>>>>>> Stashed changes
     }
 }
