@@ -1,13 +1,11 @@
 package Game;
 
+import Game.Objects.Bullet;
 import Game.Objects.Entity;
 import Game.Objects.Player;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-// Core van het spel
-// @author Massimo
 public class GameModel {
     
     private Stage stage;

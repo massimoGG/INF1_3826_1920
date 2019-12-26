@@ -2,6 +2,7 @@ package Game;
 
 import Game.Objects.Entity;
 import Game.Objects.Bullet;
+import Game.Objects.Enemy;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -30,12 +31,9 @@ public class GameView extends Region{
                     r.setHeight(6);
                     r.setFill(Color.RED);
                     getChildren().add(r);
-<<<<<<< Updated upstream
-=======
                 } else if (e instanceof Enemy) {
                     // Tegen overgestelde v/d player?
                     
->>>>>>> Stashed changes
                 }
             }
         }
@@ -48,11 +46,6 @@ public class GameView extends Region{
             playerThickness+model.getPlayer().getX(), playerThickness+model.getPlayer().getY(),
         });
         pl.setFill(Color.RED);
-<<<<<<< Updated upstream
-        getChildren().add(pl); // p = rectangle ofzo
-        
-=======
         getChildren().add(pl);
->>>>>>> Stashed changes
     }
 }

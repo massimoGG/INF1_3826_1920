@@ -45,15 +45,10 @@ public class GameController {
                 // Start het spel! 
                 view = new GameView(model);
                 paneGame.getChildren().add(view);
-                model.maxX = (int)paneGame.getWidth() - 20;
-                
-<<<<<<< Updated upstream
 
-=======
                 // Maximum X
                 model.maxX = (int)paneGame.getWidth();
                 
->>>>>>> Stashed changes
                 // De updater (50 TPS)
                 Core core = new Core(model,view,this);
                 Thread t = new Thread(core);
