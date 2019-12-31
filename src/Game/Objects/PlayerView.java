@@ -18,9 +18,6 @@ public class PlayerView extends Region{
     private Player p;
     public PlayerView(Player p) {
         this.p = p;
-    }
-    
-    public Polyline getFig(){
         Polyline pl = new Polyline();
         pl.getPoints().addAll(new Double[] {
             (p.getBreedte()/2)+p.getX(), p.getY(),
@@ -28,7 +25,7 @@ public class PlayerView extends Region{
             p.getBreedte() + p.getX(), p.getHoogte() + p.getY(),
         });
         pl.setFill(Color.RED);
-        return pl;
+        getChildren().add(pl);
     }
-    
+        
 }

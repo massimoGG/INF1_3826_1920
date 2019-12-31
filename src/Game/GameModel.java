@@ -17,7 +17,7 @@ public class GameModel {
     private Stage stage;
     private GameView view;
     private boolean isVanPlayer;
-    
+    private int test = 0;
     private int maxEntities = 100;
     private ArrayList<Entity> entities;
     private Collision col;
@@ -38,11 +38,14 @@ public class GameModel {
         player = new Player(50,50);
         // Al uw objecten
         entities = new ArrayList<Entity>();
+        Collision colli = new Collision(this);
+        col = colli;
         
     }
     
     // Tick update for entities
     public void update() {
+        
         if (player.getX()+player.getdx() > minX && player.getX()+player.getdx() < maxX) {
             player.setX(player.getX()+player.getdx());
         }
@@ -54,30 +57,32 @@ public class GameModel {
                 e.setY(e.getY()+e.getdy());
                 e.setX(e.getX()+e.getdx());
                 }
-              
                 
+                if (col.isOverlappend(e)){
+                    player.setLevens(player.getLevens()-1);
+                    entities.remove(e);
+                }   
             }
         }
-             
+        if (player.getLevens() == 0){
+            player.setLevens(5);
+            entities.clear();
+        }
         
     }
     
     // Add bullets
     public void addBullet(double x, double y, boolean isVanPlayer) {
-        Bullet e = new Bullet(x, y);
-        if (isVanPlayer){
-            e.setdy(-2);
-        }else{
-            e.setdy(1);
-        }
+        Bullet e = new Bullet(x, y, isVanPlayer);
+        
         
         entities.add(e);
         
     }
     
     // Add enemy
-    public void addEnemy(double x, double y) {
-        Enemy e = new Enemy(x, y, 20, 20);
+    public void addEnemy(double x, double breedte) {
+        Enemy e = new Enemy(x, 20, breedte, 20);
         e.setdy(2);
         entities.add(e);
         

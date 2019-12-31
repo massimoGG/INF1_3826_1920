@@ -1,5 +1,6 @@
 package Game;
 import javafx.application.Platform;
+import java.util.*;
 
 public class Core implements Runnable {
     GameModel model;
@@ -7,6 +8,7 @@ public class Core implements Runnable {
     GameController controller;
     private long dtime = 20;
     private long totalTime = 0;
+    private double random;
     
     // Constructor
     public Core(GameModel model, GameView view, GameController controller) {
@@ -24,7 +26,8 @@ public class Core implements Runnable {
                 Platform.runLater(() -> {
                     view.render();
                     
-                    controller.lblScore.setText(""+model.getEntities().size());
+                    controller.lblScore.setText("Score: "+model.getEntities().size());
+                    controller.lblLevens.setText("Levens: "+model.getPlayer().getLevens());
                  });
                  model.update(); 
                  
@@ -34,7 +37,11 @@ public class Core implements Runnable {
                 // Algorithme voor random positie
                 
                 if (totalTime % 1000 ==0){ 
-                    model.addEnemy(20,20);
+                    random = Math.random()*30;
+                    if(random < 10){
+                        random = 10;
+                    }
+                    model.addEnemy(Math.random()*200,random);
                     // Plaats een random enemy
                     
                 }
@@ -42,12 +49,12 @@ public class Core implements Runnable {
                 Thread.sleep(dtime); 
                 totalTime = totalTime + dtime;
             }catch(Exception e) {
-                err++;
+                /**err++;
                 System.out.println("ERROR : run() : "+e.getMessage());
                 if (err > 100){
                     System.out.println("ERROR: run() : Too many errors! :(");
                     return;
-                }
+                }**/
             }
         }
     }

@@ -33,11 +33,11 @@ public class GameView extends Region{
                 if (e instanceof Bullet) {
                     Bullet p = (Bullet) e;
                     BulletView bView = new BulletView(p);
-                    getChildren().add(bView.getFig());
+                    getChildren().add(bView);
                 } else if (e instanceof Enemy) {
                     Enemy p = (Enemy) e;
                     EnemyView eView = new EnemyView(p);
-                    getChildren().add(eView.getFig());
+                    getChildren().add(eView);
                     
                 }
             }
@@ -45,10 +45,11 @@ public class GameView extends Region{
         
         // Speler tekenen
         PlayerView pView = new PlayerView(model.getPlayer());
-        Polyline p = pView.getFig();
-        getChildren().add(p);
+        getChildren().add(pView);
        
          // p = rectangle ofzo
-
+         
+        
     }
+    
 }

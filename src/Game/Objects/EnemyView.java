@@ -18,17 +18,16 @@ public class EnemyView extends Region{
     private Enemy e;
     public EnemyView(Enemy e) {
         this.e = e;
-    }
-    
-    public Polyline getFig(){
         Polyline pl = new Polyline();
         pl.getPoints().addAll(new Double[] {
-            (e.getBreedte()/2)+e.getX(), e.getY(),
-            e.getX(), e.getHoogte() + e.getY(),
-            e.getBreedte() + e.getX(), e.getHoogte() + e.getY(),
+            (e.getBreedte()/2)+e.getX(), e.getHoogte()+ e.getY(),
+            e.getX(),   e.getY(),
+            e.getBreedte() + e.getX(),  e.getY(),
         });
-        pl.setFill(Color.RED);
-        return pl;
+        pl.setFill(Color.BLUE);
+        getChildren().add(pl);
     }
+    
+    
     
 }

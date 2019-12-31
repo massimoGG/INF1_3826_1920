@@ -26,6 +26,10 @@ public class GameController {
 
     @FXML
     public Label lblScore;
+    
+    
+    @FXML
+    public Label lblLevens;
 
     @FXML
     void initialize() {
@@ -33,6 +37,7 @@ public class GameController {
         assert paneGame != null : "fx:id=\"paneGame\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert btnPlay != null : "fx:id=\"btnPlay\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblScore != null : "fx:id=\"lblScore\" was not injected: check your FXML file 'FXMLView.fxml'.";
+        assert lblLevens != null : "fx:id=\"lblLevens\" was not injected: check your FXML file 'FXMLView.fxml'.";
 
         btnPlay.setOnAction(e->{
             

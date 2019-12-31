@@ -12,7 +12,12 @@
             <Button fx:id="btnPlay" focusTraversable="false" layoutX="171.0" layoutY="258.0" mnemonicParsing="false" text="Play" />
          </children>
       </AnchorPane>
-      <Label fx:id="lblScore" layoutX="169.0" layoutY="14.0" text="SCORE" textFill="WHITE">
+      <Label fx:id="lblScore" layoutX="14.0" layoutY="14.0" text="Score" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLevens" layoutX="291.0" layoutY="14.0" text="Levens" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

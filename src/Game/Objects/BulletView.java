@@ -18,12 +18,17 @@ public class BulletView extends Region{
     private Bullet b;
     public BulletView(Bullet b) {
         this.b = b;
+        Rectangle r = new Rectangle(b.getX(),b.getY(),b.getBreedte(),b.getHoogte());
+        if (b.isVanPlayer()){
+            r.setFill(Color.RED);
+        }
+        else{
+            r.setFill(Color.BLUE);
+        }
+        
+        getChildren().add(r);
     }
     
-    public Rectangle getFig(){
-        Rectangle r = new Rectangle(b.getX(),b.getY(),b.getBreedte(),b.getHoogte());
-        r.setFill(Color.RED);
-        return r;
-    }
+ 
     
 }

@@ -8,29 +8,35 @@ import Game.Objects.Player;
 public class Collision {
     private GameModel model;
     private double XminEntity, XmaxEntity,XminPlayer, XmaxPlayer;
+    private Entity e;
+    private Player p;
     
     public Collision(GameModel model) {
         this.model = model;
+        p = model.getPlayer();
     }
     
     // Kogel Kogel // Gebruik dy
     // speler kogel
     // kogel enemy
-    public boolean isOverlappend() {
-        for (Entity en : model.getEntities()) { // Advanced for loop
-            if (en instanceof Bullet || en instanceof Enemy) {
-                // Rekeneing houden met dikte objecten
-                XminEntity = en.getX();
-                XmaxEntity = en.getX() + en.getBreedte();
-                XminPlayer = model.getPlayer().getBreedte();
-                XmaxPlayer = model.getPlayer().getBreedte()+ model.getPlayer().getBreedte();
-                
-                if(XminPlayer < XminEntity && XmaxPlayer > XminEntity && en.getY() + en.getdy() == model.getPlayer().getY()){
-                    System.out.println("collision");
-                    return true;
-                }
+    public boolean isOverlappend(Entity e) {
+        this.e = e;
+        XminPlayer = p.getX();
+        XmaxPlayer = p.getBreedte() + p.getX();
+        XminEntity = e.getX();
+        XmaxEntity = e.getBreedte() + e.getX();
+        if(e.getY()+e.getHoogte() >= p.getY() && e.getY()<= p.getY()+p.getHoogte()){
+            if(XminEntity >= XminPlayer && XminEntity <= XmaxPlayer){
+                return true;
+            }else if(XmaxEntity >= XminPlayer && XmaxEntity <= XmaxPlayer){
+                return true;
+            }
+            else{
+                return false;
             }
         }
-        return false;
+        else{
+            return false;
+        }
     }
 }
