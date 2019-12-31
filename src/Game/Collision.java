@@ -7,6 +7,7 @@ import Game.Objects.Player;
 
 public class Collision {
     private GameModel model;
+    private double XminEntity, XmaxEntity,XminPlayer, XmaxPlayer;
     
     public Collision(GameModel model) {
         this.model = model;
@@ -19,9 +20,14 @@ public class Collision {
         for (Entity en : model.getEntities()) { // Advanced for loop
             if (en instanceof Bullet || en instanceof Enemy) {
                 // Rekeneing houden met dikte objecten
-                if (en.getX() == model.getPlayer().getX() && en.getY() == model.getPlayer().getY()) {
-                    // Dood! OF een hartje minder
-                    
+                XminEntity = en.getX();
+                XmaxEntity = en.getX() + en.getBreedte();
+                XminPlayer = model.getPlayer().getBreedte();
+                XmaxPlayer = model.getPlayer().getBreedte()+ model.getPlayer().getBreedte();
+                
+                if(XminPlayer < XminEntity && XmaxPlayer > XminEntity && en.getY() + en.getdy() == model.getPlayer().getY()){
+                    System.out.println("collision");
+                    return true;
                 }
             }
         }

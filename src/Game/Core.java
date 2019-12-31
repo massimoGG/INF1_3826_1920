@@ -24,7 +24,7 @@ public class Core implements Runnable {
                 Platform.runLater(() -> {
                     view.render();
                     
-                    controller.lblScore.setText(""+model.getPlayer().getX());
+                    controller.lblScore.setText(""+model.getEntities().size());
                  });
                  model.update(); 
                  
@@ -34,6 +34,7 @@ public class Core implements Runnable {
                 // Algorithme voor random positie
                 
                 if (totalTime % 1000 ==0){ 
+                    model.addEnemy(20,20);
                     // Plaats een random enemy
                     
                 }

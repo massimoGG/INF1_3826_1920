@@ -3,6 +3,9 @@ package Game;
 import Game.Objects.Entity;
 import Game.Objects.Bullet;
 import Game.Objects.Enemy;
+import Game.Objects.PlayerView;
+import Game.Objects.BulletView;
+import Game.Objects.EnemyView;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -10,8 +13,12 @@ import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Rectangle;
 
 public class GameView extends Region{
+    
 
     private GameModel model;
+    private PlayerView pView;
+    private BulletView bView;
+    private EnemyView eView;
     
     public GameView(GameModel model) {
         this.model = model;
@@ -24,24 +31,24 @@ public class GameView extends Region{
         for (Entity e : model.getEntities()) {
             if (e!=null) {
                 if (e instanceof Bullet) {
-                    Rectangle r = new Rectangle();
-                    r.setX(e.getX());
-                    r.setY(e.getY());
-                    getChildren().add(r);
+                    Bullet p = (Bullet) e;
+                    BulletView bView = new BulletView(p);
+                    getChildren().add(bView.getFig());
                 } else if (e instanceof Enemy) {
+                    Enemy p = (Enemy) e;
+                    EnemyView eView = new EnemyView(p);
+                    getChildren().add(eView.getFig());
                     
                 }
             }
         }
         
         // Speler tekenen
-        Polyline pl = new Polyline();
-        pl.getPoints().addAll(new Double[] {
-            10+model.getPlayer().getX(), model.getPlayer().getY(),
-            0+model.getPlayer().getX(), 20+model.getPlayer().getY(),
-            20+model.getPlayer().getX(), 20+model.getPlayer().getY(),
-        });
-        pl.setFill(Color.RED);
-        getChildren().add(pl); // p = rectangle ofzo
+        PlayerView pView = new PlayerView(model.getPlayer());
+        Polyline p = pView.getFig();
+        getChildren().add(p);
+       
+         // p = rectangle ofzo
+
     }
 }

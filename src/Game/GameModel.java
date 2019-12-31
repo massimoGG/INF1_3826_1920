@@ -1,23 +1,27 @@
 package Game;
 
 import Game.Objects.Bullet;
+import Game.Objects.BulletView;
 import Game.Objects.Enemy;
+import Game.Objects.EnemyView;
 import Game.Objects.Entity;
 import Game.Objects.Player;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import java.util.*;
 // Core van het spel
 // @author Massimo
 public class GameModel {
     
     private Stage stage;
     private GameView view;
+    private boolean isVanPlayer;
     
     private int maxEntities = 100;
-    private Entity[] entities;
-    public Entity[] getEntities() {
+    private ArrayList<Entity> entities;
+    private Collision col;
+    public ArrayList<Entity> getEntities() {
         return entities;
     }
     
@@ -33,7 +37,8 @@ public class GameModel {
         // Maak een nieuwe speler aan
         player = new Player(50,50);
         // Al uw objecten
-        entities = new Entity[maxEntities];
+        entities = new ArrayList<Entity>();
+        
     }
     
     // Tick update for entities
@@ -41,15 +46,40 @@ public class GameModel {
         if (player.getX()+player.getdx() > minX && player.getX()+player.getdx() < maxX) {
             player.setX(player.getX()+player.getdx());
         }
+        for (Entity e : getEntities()) {
+            if (e!=null) {
+                if(e.getY() > stage.getHeight()+100){
+                    entities.remove(e);
+                }else{
+                e.setY(e.getY()+e.getdy());
+                e.setX(e.getX()+e.getdx());
+                }
+              
+                
+            }
+        }
+             
+        
     }
     
     // Add bullets
-    public void addEntity() {
+    public void addBullet(double x, double y, boolean isVanPlayer) {
+        Bullet e = new Bullet(x, y);
+        if (isVanPlayer){
+            e.setdy(-2);
+        }else{
+            e.setdy(1);
+        }
+        
+        entities.add(e);
         
     }
     
     // Add enemy
-    public void addEnemy() {
+    public void addEnemy(double x, double y) {
+        Enemy e = new Enemy(x, y, 20, 20);
+        e.setdy(2);
+        entities.add(e);
         
     }
     

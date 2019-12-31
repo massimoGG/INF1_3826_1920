@@ -3,12 +3,16 @@ package Game.Objects;
 abstract public class Entity {
     double x,y;
     double dx,dy;
+    double breedte, hoogte;
     
-    public Entity(double x, double y) {
+    public Entity(double x, double y, double breedte, double hoogte) {
         this.x = x; 
         this.y = y;
         this.dx = 0;
         this.dy=0;
+        this.breedte = breedte;
+        this.hoogte = hoogte;
+                
     }
     
     public double getX() {
@@ -36,4 +40,13 @@ abstract public class Entity {
     public void setdy(double dy) {
         this.dy = dy;
     }
+
+    public double getBreedte() {
+        return breedte;
+    }
+
+    public double getHoogte() {
+        return hoogte;
+    }
+    
 }
