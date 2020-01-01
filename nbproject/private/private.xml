@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Massimo/tmp/Github/SchoolProjectJavaFX/src/Game/Objects/Entity.java</file>
-            <file>file:/D:/Massimo/tmp/Github/SchoolProjectJavaFX/src/Game/GameModel.java</file>
-            <file>file:/D:/Massimo/tmp/Github/SchoolProjectJavaFX/src/Game/GameView.java</file>
-            <file>file:/D:/Massimo/tmp/Github/SchoolProjectJavaFX/src/Game/Main.java</file>
-            <file>file:/D:/Massimo/tmp/Github/SchoolProjectJavaFX/src/Game/Core.java</file>
-            <file>file:/D:/Massimo/tmp/Github/SchoolProjectJavaFX/src/Game/Objects/Player.java</file>
-            <file>file:/D:/Massimo/tmp/Github/SchoolProjectJavaFX/src/Game/GameController.java</file>
+            <file>file:/C:/Users/royve/Desktop/school/netbeans%20projects/ProjectSchool/SchoolProjectJavaFX/src/Game/Objects/Enemy.java</file>
+            <file>file:/C:/Users/royve/Desktop/school/netbeans%20projects/ProjectSchool/SchoolProjectJavaFX/src/Game/Objects/Player.java</file>
+            <file>file:/C:/Users/royve/Desktop/school/netbeans%20projects/ProjectSchool/SchoolProjectJavaFX/src/Game/Core.java</file>
+            <file>file:/C:/Users/royve/Desktop/school/netbeans%20projects/ProjectSchool/SchoolProjectJavaFX/src/Game/GameController.java</file>
+            <file>file:/C:/Users/royve/Desktop/school/netbeans%20projects/ProjectSchool/SchoolProjectJavaFX/src/Game/Collision.java</file>
+            <file>file:/C:/Users/royve/Desktop/school/netbeans%20projects/ProjectSchool/SchoolProjectJavaFX/src/Game/Objects/Bullet.java</file>
+            <file>file:/C:/Users/royve/Desktop/school/netbeans%20projects/ProjectSchool/SchoolProjectJavaFX/src/Game/Objects/Entity.java</file>
         </group>
     </open-files>
 </project-private>
