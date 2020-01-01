@@ -26,6 +26,10 @@ public class GameController {
 
     @FXML
     public Label lblScore;
+    
+    
+    @FXML
+    public Label lblLevens;
 
     @FXML
     void initialize() {
@@ -33,6 +37,7 @@ public class GameController {
         assert paneGame != null : "fx:id=\"paneGame\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert btnPlay != null : "fx:id=\"btnPlay\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblScore != null : "fx:id=\"lblScore\" was not injected: check your FXML file 'FXMLView.fxml'.";
+        assert lblLevens != null : "fx:id=\"lblLevens\" was not injected: check your FXML file 'FXMLView.fxml'.";
 
         btnPlay.setOnAction(e->{
             
@@ -45,15 +50,16 @@ public class GameController {
                 // Start het spel! 
                 view = new GameView(model);
                 paneGame.getChildren().add(view);
-                model.maxX = (int)paneGame.getWidth() - 20;
                 
-
+                // Maximum X
+                model.maxX = (int)paneGame.getWidth() - 10;
+                
                 // De updater (50 TPS)
-                Core core = new Core(model,view,this);
+                Core core = new Core(model, view, this);
                 Thread t = new Thread(core);
                 t.setDaemon(true);
                 t.start();
-              
+                
                 // Key events nog accepteren wanneer het spel gestart is
                 paneGame.setOnKeyPressed(ev -> {
                     model.move(ev);
@@ -75,13 +81,5 @@ public class GameController {
         //view = new GameView(model);
         // Key events
         paneGame.setFocusTraversable(true);
-    }
-    
-    public void toggleMenu() {
-        if (btnPlay.isVisible()) {
-            btnPlay.setVisible(false);
-        } else {
-            btnPlay.setVisible(true);
-        }
     }
 }
