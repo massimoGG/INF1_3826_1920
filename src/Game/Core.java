@@ -37,7 +37,7 @@ public class Core implements Runnable {
                 // Algorithme voor random positie
                 
                 if (totalTime % 1000 ==0){ 
-                    random = Math.random()*30;
+                    random = Math.random()*20;
                     if(random < 10){
                         random = 10;
                     }
