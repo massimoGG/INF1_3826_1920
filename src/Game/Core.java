@@ -41,7 +41,7 @@ public class Core implements Runnable {
                     if(random < 10){
                         random = 10;
                     }
-                    model.addEnemy(Math.random()*200,random);
+                    model.addEnemy(Math.random()*380,random);
                     // Plaats een random enemy
                     
                 }

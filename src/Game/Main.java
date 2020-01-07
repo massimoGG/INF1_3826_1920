@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    private Scene stage;
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -28,6 +29,10 @@ public class Main extends Application {
         stage.setTitle("Polygon game");
         stage.show();
         model.setStage(stage);
+    }
+    
+    public Scene getStage(){
+        return stage;
     }
     
     public static void main(String[] args) {
