@@ -30,7 +30,8 @@ public class GameModel {
     public Player getPlayer() {return player;}
     
     // Afmetingen van het scherm
-    public double minX = 0,maxX;
+    public double minX = 0;
+    public double maxX;
 
     // Constructor
     public GameModel() {        
@@ -46,7 +47,8 @@ public class GameModel {
     // Tick update for entities
     public void update() {
         
-        if (player.getX()+player.getdx() > minX && player.getX()+player.getdx() < maxX) {
+        if (player.getX()+player.getdx() > minX && player.getX()+player.getdx() < maxX) 
+        {
             player.setX(player.getX()+player.getdx());
         }
         for (Entity e : getEntities()) {
@@ -125,5 +127,6 @@ public class GameModel {
     public void setStage(Stage stage) {
         this.stage = stage;
         player.setY(stage.getHeight()-150);
+        
     }
 }
