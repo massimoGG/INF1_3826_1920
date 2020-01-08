@@ -1,6 +1,8 @@
 package Game;
 import javafx.application.Platform;
 import java.util.*;
+import Game.Objects.*;
+       
 
 public class Core implements Runnable {
     GameModel model;
@@ -26,7 +28,7 @@ public class Core implements Runnable {
                 Platform.runLater(() -> {
                     view.render();
                     
-                    controller.lblScore.setText("Score: "+model.getEntities().size());
+                    controller.lblScore.setText("Score: "+model.getScore());
                     controller.lblLevens.setText("Levens: "+model.getPlayer().getLevens());
                  });
                  model.update(); 
@@ -45,6 +47,13 @@ public class Core implements Runnable {
                     // Plaats een random enemy
                     
                 }
+                if (totalTime % 500 ==0){ 
+                     model.addBullet(totalTime);
+                    }
+                    
+                    // Plaats een random enemy
+                    
+                
                 
                 Thread.sleep(dtime); 
                 totalTime = totalTime + dtime;

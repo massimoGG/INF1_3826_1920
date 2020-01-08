@@ -15,11 +15,12 @@ import java.util.*;
 public class GameModel {
     
     private Stage stage;
+    private int score = 0;
     private GameView view;
     private boolean isVanPlayer;
     private int test = 0;
     private int maxEntities = 100;
-    private ArrayList<Entity> entities;
+    private ArrayList<Entity> entities, bullets;
     private Collision col;
     public ArrayList<Entity> getEntities() {
         return entities;
@@ -53,7 +54,10 @@ public class GameModel {
         }
         for (Entity e : getEntities()) {
             if (e!=null) {
-                if(e.getY() > stage.getHeight()+100){
+                if(e.getY() > stage.getHeight()-e.getHoogte()-50){
+                    if(e instanceof Enemy){
+                        score = score+1;
+                    }
                     entities.remove(e);
                 }else{
                 e.setY(e.getY()+e.getdy());
@@ -74,12 +78,19 @@ public class GameModel {
     }
     
     // Add bullets
-    public void addBullet(double x, double y, boolean isVanPlayer) {
-        Bullet e = new Bullet(x, y, isVanPlayer);
-        
-        
-        entities.add(e);
-        
+    public void addBullet(long totalTime) {
+        bullets  = new ArrayList<Entity>();
+        Bullet p = new Bullet(player.getX()+player.getBreedte()/2, player.getY(), true);
+        entities.add(p);
+        for (Entity en : entities){
+            if (en instanceof Enemy && totalTime % 1500 ==0){
+                Bullet be = new Bullet(en.getX()+en.getBreedte()/2, en.getY(), false);
+                
+                bullets.add(be);
+                
+            }
+        } 
+        entities.addAll(bullets);
     }
     
     // Add enemy
@@ -122,6 +133,9 @@ public class GameModel {
                     break;
             }
         } catch (Exception a) {}
+    }
+    public int getScore(){
+        return score;
     }
 
     public void setStage(Stage stage) {

@@ -13,8 +13,12 @@ public class Bullet extends Entity {
         
         if (isVanPlayer){
             super.setdy(-2);
+            super.setY(y-5);
         }else{
-            super.setdy(1);
+            super.setY(y+5);
+            super.setdy(3);
+            
+            
         }
     }
     
