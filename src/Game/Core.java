@@ -44,8 +44,18 @@ public class Core implements Runnable {
                         random = 10;
                     }
                     model.addEnemy(Math.random()*380,random);
+                }
                     // Plaats een random enemy
                     
+                /**
+                 * add upgrade timer
+                 */    
+                if (totalTime % 10000 ==0){ 
+                    random = Math.random()*20;
+                    if(random < 10){
+                        random = 10;
+                    }
+                    model.addUpgrade(Math.random()*380,random); 
                 }
                 if (totalTime % 500 ==0){ 
                      model.addBullet(totalTime);

@@ -1,11 +1,6 @@
 package Game;
 
-import Game.Objects.Entity;
-import Game.Objects.Bullet;
-import Game.Objects.Enemy;
-import Game.Objects.PlayerView;
-import Game.Objects.BulletView;
-import Game.Objects.EnemyView;
+import Game.Objects.*;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -19,6 +14,7 @@ public class GameView extends Region{
     private PlayerView pView;
     private BulletView bView;
     private EnemyView eView;
+    private UpgradeView uView;
     
     public GameView(GameModel model) {
         this.model = model;
@@ -34,11 +30,16 @@ public class GameView extends Region{
                     Bullet p = (Bullet) e;
                     BulletView bView = new BulletView(p);
                     getChildren().add(bView);
-                } else if (e instanceof Enemy) {
+                } 
+                else if (e instanceof Enemy) {
                     Enemy p = (Enemy) e;
                     EnemyView eView = new EnemyView(p);
                     getChildren().add(eView);
-                    
+                }
+                else if (e instanceof Upgrade) {
+                    Upgrade p  = (Upgrade) e;
+                    UpgradeView uView = new UpgradeView(p);
+                    getChildren().add(uView); 
                 }
             }
         }

@@ -6,6 +6,7 @@ import Game.Objects.Enemy;
 import Game.Objects.EnemyView;
 import Game.Objects.Entity;
 import Game.Objects.Player;
+import Game.Objects.Upgrade;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -100,6 +101,15 @@ public class GameModel {
         entities.add(e);
         
     }
+    /**
+     * adds upgrade
+     * @param e 
+     */
+    public void addUpgrade(double x, double breedte) {
+        Upgrade u = new Upgrade(x, 20, breedte, 20);
+        u.setdy(3);
+        entities.add(u);
+    }
     
     public void move(KeyEvent e) {
         try {
@@ -143,4 +153,6 @@ public class GameModel {
         player.setY(stage.getHeight()-150);
         
     }
+
+    
 }
