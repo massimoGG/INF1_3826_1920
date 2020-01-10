@@ -9,16 +9,16 @@ public class Bullet extends Entity {
      */
     public Bullet(double x, double y, boolean isVanPlayer) {
         super(x,y,2,2);
-        this.isVanPlayer = isVanPlayer;
-        
+        //this.isVanPlayer = isVanPlayer;
+        this.isVanPlayer = true;
         if (isVanPlayer){
+            // Nr boven
             super.setdy(-2);
             super.setY(y-5);
         }else{
+            // Nr beneden
+            super.setdy(3);  
             super.setY(y+5);
-            super.setdy(3);
-            
-            
         }
     }
     

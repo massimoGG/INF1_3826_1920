@@ -11,7 +11,6 @@ public class Collision {
     private double XminEntity, XmaxEntity, XminPlayer, XmaxPlayer;
     private Entity e;
     private Player p;
-    public boolean killshot;
 
     public Collision(GameModel model) {
         this.model = model;
@@ -53,15 +52,12 @@ public class Collision {
                 // met speler overlapt
                 if (isOverlappend(e)) {
                     if(e instanceof Enemy ||  e instanceof Bullet){
-                    killshot = true;
-                    return killshot;
+                        return true;
                     }
 
                 }
             }
-            else {
-            killshot = false;
-            }
-        } return killshot;
+        }
+        return false;
     }
 }
