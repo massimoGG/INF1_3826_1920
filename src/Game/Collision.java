@@ -42,7 +42,7 @@ public class Collision {
     }
 
 /**
-     * checkt of de collision dodelijk is
+     * checkt of de collision dodelijk is met speler
      *
      * @return true or false
      */
@@ -50,9 +50,11 @@ public class Collision {
            
         for (Entity e : model.getEntities()) {
             if (e != null) {
+                // met speler overlapt
                 if (isOverlappend(e)) {
                     if(e instanceof Enemy ||  e instanceof Bullet){
                     killshot = true;
+                    return killshot;
                     }
 
                 }
