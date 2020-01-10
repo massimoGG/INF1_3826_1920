@@ -9,8 +9,7 @@ public class Bullet extends Entity {
      */
     public Bullet(double x, double y, boolean isVanPlayer) {
         super(x,y,2,2);
-        //this.isVanPlayer = isVanPlayer;
-        this.isVanPlayer = true;
+        this.isVanPlayer = isVanPlayer;
         if (isVanPlayer){
             // Nr boven
             super.setdy(-2);
