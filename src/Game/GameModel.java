@@ -1,12 +1,6 @@
 package Game;
 
-import Game.Objects.Bullet;
-import Game.Objects.BulletView;
-import Game.Objects.Enemy;
-import Game.Objects.EnemyView;
-import Game.Objects.Entity;
-import Game.Objects.Player;
-import Game.Objects.Upgrade;
+import Game.Objects.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -26,6 +20,8 @@ public class GameModel {
     public ArrayList<Entity> getEntities() {
         return entities;
     }
+    
+    
     
     // Onze speler
     private static Player player;
@@ -65,10 +61,19 @@ public class GameModel {
                 e.setX(e.getX()+e.getdx());
                 }
                 
-                if (col.isOverlappend(e)){
-                    player.setLevens(player.getLevens()-1);
-                    entities.remove(e);
-                }   
+                if (col.isKillshot() == true){
+                    if( e instanceof Player){
+                        player.setLevens(player.getLevens()-1);
+                        entities.remove(e);
+                        col.killshot = false;
+                    }
+                    else {
+                        score = score +1;
+                        entities.remove(e);
+                        col.killshot = false;
+                    }
+                } 
+                
             }
         }
         if (player.getLevens() == 0){

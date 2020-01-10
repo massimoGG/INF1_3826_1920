@@ -6,15 +6,18 @@ import Game.Objects.Entity;
 import Game.Objects.Player;
 
 public class Collision {
+
     private GameModel model;
-    private double XminEntity, XmaxEntity,XminPlayer, XmaxPlayer;
+    private double XminEntity, XmaxEntity, XminPlayer, XmaxPlayer;
     private Entity e;
     private Player p;
-    
+    public boolean killshot;
+
     public Collision(GameModel model) {
         this.model = model;
         p = model.getPlayer();
     }
+
     
     // Kogel Kogel // Gebruik dy
     // speler kogel
@@ -25,18 +28,38 @@ public class Collision {
         XmaxPlayer = p.getBreedte() + p.getX();
         XminEntity = e.getX();
         XmaxEntity = e.getBreedte() + e.getX();
-        if(e.getY()+e.getHoogte() >= p.getY() && e.getY()<= p.getY()+p.getHoogte()){
-            if(XminEntity >= XminPlayer && XminEntity <= XmaxPlayer){
+        if (e.getY() + e.getHoogte() >= p.getY() && e.getY() <= p.getY() + p.getHoogte()) {
+            if (XminEntity >= XminPlayer && XminEntity <= XmaxPlayer) {
                 return true;
-            }else if(XmaxEntity >= XminPlayer && XmaxEntity <= XmaxPlayer){
+            } else if (XmaxEntity >= XminPlayer && XmaxEntity <= XmaxPlayer) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
-        }
-        else{
+        } else {
             return false;
         }
+    }
+
+/**
+     * checkt of de collision dodelijk is
+     *
+     * @return true or false
+     */
+    public boolean isKillshot() {
+           
+        for (Entity e : model.getEntities()) {
+            if (e != null) {
+                if (isOverlappend(e)) {
+                    if(e instanceof Enemy ||  e instanceof Bullet){
+                    killshot = true;
+                    }
+
+                }
+            }
+            else {
+            killshot = false;
+            }
+        } return killshot;
     }
 }
