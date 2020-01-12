@@ -29,6 +29,7 @@ public class Core implements Runnable {
                     view.render();
                     
                     controller.lblScore.setText("Score: "+model.getScore());
+                    //controller.lblScore.setText("Score: "+model.getEntities().size());
                     controller.lblLevens.setText("Levens: "+model.getPlayer().getLevens());
                 });
                 model.update(); 
@@ -41,7 +42,7 @@ public class Core implements Runnable {
                     if(random < 10){
                         random = 10;
                     }
-                    model.addEnemy(Math.random()*380,random);
+                    model.addEnemy(Math.random()*360,random);
                 }
                 
                 /**
@@ -58,7 +59,7 @@ public class Core implements Runnable {
                 /**
                  * Automatisch schieten voor de speler
                  */
-                if (totalTime % 500 ==0) {
+                if (totalTime % 200 ==0) {
                     model.addBullets(totalTime);
                 }
                 
