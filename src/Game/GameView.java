@@ -22,8 +22,12 @@ public class GameView extends Region{
     
     // Render alle objected die op het scherm moeten verschijnen
     public void render() {
+        
         getChildren().clear();
         
+        if (model.getEntities().isEmpty()) {
+            return;
+        }
         for (Entity e : model.getEntities()) {
             if (e!=null) {
                 if (e instanceof Bullet) {

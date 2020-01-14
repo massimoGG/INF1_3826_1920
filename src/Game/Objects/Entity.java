@@ -49,4 +49,12 @@ abstract public class Entity {
         return hoogte;
     }
     
+    public double getMaxX(){
+        return x + breedte;
+    }
+    
+    public double getMaxY(){
+        return y + hoogte;
+    }
+    
 }

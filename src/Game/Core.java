@@ -29,27 +29,25 @@ public class Core implements Runnable {
                     view.render();
                     
                     controller.lblScore.setText("Score: "+model.getScore());
+                    //controller.lblScore.setText("Score: "+model.getEntities().size());
                     controller.lblLevens.setText("Levens: "+model.getPlayer().getLevens());
-                 });
-                 model.update(); 
-                 
-                 
-                // totale_tijd % 500 == 0 -> kogel schieten
-                // Spawn a new enemy
-                // Algorithme voor random positie
+                });
+                model.update(); 
                 
+                /**
+                 * Random vijand toevoegen
+                 */  
                 if (totalTime % 1000 ==0){ 
                     random = Math.random()*20;
                     if(random < 10){
                         random = 10;
                     }
-                    model.addEnemy(Math.random()*380,random);
+                    model.addEnemy(Math.random()*360,random);
                 }
-                    // Plaats een random enemy
-                    
+                
                 /**
-                 * add upgrade timer
-                 */    
+                 * Random upgrade toevoegen om de 10 seconden
+                 */
                 if (totalTime % 10000 ==0){ 
                     random = Math.random()*20;
                     if(random < 10){
@@ -57,23 +55,26 @@ public class Core implements Runnable {
                     }
                     model.addUpgrade(Math.random()*380,random); 
                 }
-                if (totalTime % 500 ==0){ 
-                     model.addBullet(totalTime);
-                    }
-                    
-                    // Plaats een random enemy
-                    
                 
+                /**
+                 * Automatisch schieten voor de speler
+                 */
+                if (totalTime % 200 ==0) {
+                    model.addBullets(totalTime);
+                }
                 
+                /**
+                 * Wacht even voor geen 100% cpu
+                 */
                 Thread.sleep(dtime); 
                 totalTime = totalTime + dtime;
             }catch(Exception e) {
-                /**err++;
+             /*   err++;
                 System.out.println("ERROR : run() : "+e.getMessage());
                 if (err > 100){
                     System.out.println("ERROR: run() : Too many errors! :(");
                     return;
-                }**/
+                }*/
             }
         }
     }

@@ -10,15 +10,12 @@ public class Bullet extends Entity {
     public Bullet(double x, double y, boolean isVanPlayer) {
         super(x,y,2,2);
         this.isVanPlayer = isVanPlayer;
-        
         if (isVanPlayer){
+            // Nr boven
             super.setdy(-2);
-            super.setY(y-5);
         }else{
-            super.setY(y+5);
+            // Nr beneden
             super.setdy(3);
-            
-            
         }
     }
     
