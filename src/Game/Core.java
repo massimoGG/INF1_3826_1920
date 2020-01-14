@@ -11,7 +11,7 @@ public class Core implements Runnable {
     private long dtime = 20;
     private long totalTime = 0;
     private double random;
-    
+    public boolean upgradeOn;
     // Constructor
     public Core(GameModel model, GameView view, GameController controller) {
         this.model = model;
@@ -54,12 +54,15 @@ public class Core implements Runnable {
                         random = 10;
                     }
                     model.addUpgrade(Math.random()*380,random); 
+                    /*if(upgradeOn = true){
+                        model.setUpgradeOn();
+                    }*/
                 }
                 
                 /**
                  * Automatisch schieten voor de speler
                  */
-                if (totalTime % 200 ==0) {
+                if (totalTime % 500 ==0) {
                     model.addBullets(totalTime);
                 }
                 

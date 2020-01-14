@@ -23,7 +23,10 @@ public class GameModel {
     // Afmetingen van het scherm
     public double minX = 0;
     public double maxX;
-
+    
+    //de upgrade status
+    public boolean upgradeOn;
+    
     // Constructor
     public GameModel() {
         // Maak een nieuwe speler aan
@@ -97,6 +100,16 @@ public class GameModel {
         ArrayList<Entity> bullets = new ArrayList<Entity>();
         Bullet p = new Bullet(player.getX() + player.getBreedte() / 2, player.getY() - 5, true);
         entities.add(p);
+        
+        while (upgradeOn == true) {
+            
+        Bullet ul = new Bullet(player.getX() -5 + player.getBreedte() / 2, player.getY() - 5, true);
+        entities.add(ul);
+        Bullet ur = new Bullet(player.getX() +5 + player.getBreedte() / 2, player.getY() - 5, true);
+        entities.add(ur);
+        
+        }
+        
         for (Entity en : entities) {
             if (en instanceof Enemy && totalTime % 1500 == 0) {
                 Bullet be = new Bullet(en.getX() + en.getBreedte() / 2, en.getY() + 50, false);
@@ -202,6 +215,18 @@ public class GameModel {
         } else {
             this.score = newScore;
         }
+    }
+    /*
+    *setter upgrade status
+    */
+    public boolean setUpgradeOn(){
+        if(upgradeOn == false){
+            upgradeOn = true;
+        }
+        else{
+            upgradeOn = false;
+        }
+        return upgradeOn;
     }
 
     public void setStage(Stage stage) {

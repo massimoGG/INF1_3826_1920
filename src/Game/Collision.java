@@ -13,7 +13,7 @@ public class Collision {
 
     private GameModel model;
     private ArrayList<Entity> lijst;
-
+    public boolean UpgradeOn;
     public Collision(GameModel model) {
         this.model = model;
     }
@@ -42,7 +42,8 @@ public class Collision {
                                  */
                                 if (e instanceof Player) {
                                     if (e2 instanceof Upgrade) {
-                                        //Doe de upgrade
+                                        UpgradeOn = true;
+                                        
                                     } 
                                     else {
                                         model.setLevens(model.getLevens() - 1);
