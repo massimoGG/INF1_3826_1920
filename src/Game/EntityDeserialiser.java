@@ -16,7 +16,7 @@ import Game.Objects.*;
  */
 public class EntityDeserialiser implements JsonDeserializer<Entity> {
 
-    public Entity deserialize(JsonElement json, Type Entity, JsonDeserializationContext context)
+    public Entity deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
         throws JsonParseException {
             JsonObject jObject = json.getAsJsonObject();
             JsonElement jLevens = jObject.get("levens");

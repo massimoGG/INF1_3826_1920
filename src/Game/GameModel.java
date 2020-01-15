@@ -3,6 +3,7 @@ package Game;
 import Game.Objects.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -187,10 +188,10 @@ public class GameModel {
                     // Escape -> Close game
                     stage.close();
                     break;
-                /*case S:
+                case S:
                     toJson();
                     break;
-                case L:
+                /*case L:
                     load();
                     break;*/
             }
@@ -307,8 +308,14 @@ public class GameModel {
     public void toJson() {
         saving = true;
         try {
+            Entity[] lijst = new Entity[entities.size()];
+            int i = 0;
+            for (Entity e : entities){
+                lijst[i] = e;
+                i++;
+            }
             Gson gsonobject = new Gson();
-            String json = gsonobject.toJson(entities);
+            String json = gsonobject.toJson(lijst);
             System.out.println(json);
             JsonWriter schrijver = gsonobject.newJsonWriter(new FileWriter("dc.json.txt"));
             schrijver.jsonValue(json);
@@ -328,10 +335,21 @@ public class GameModel {
     public void load() {
 
         try {
+            /*JsonReader fileReader = new JsonReader(new FileReader("dc.json.txt"));
+            Gson gson = new Gson();
+            Player newPlayer = gson.fromJson(fileReader, Player.class);
+            entities.remove(player);
+            player = newPlayer;
+            entities.add(player);*/
+            
+            
+            
+            
             GsonBuilder gsonBouwer = new GsonBuilder();
             gsonBouwer.registerTypeAdapter(Entity.class, new EntityDeserialiser());
             Gson gson = gsonBouwer.create();
-            ArrayList nieuw = gson.fromJson(new FileReader("dc.json.txt"), ArrayList.class);
+            FileReader file = new FileReader("dc.json.txt");
+            ArrayList nieuw = gson.fromJson(file, ArrayList.class);
             
             
             System.out.println(entities);
