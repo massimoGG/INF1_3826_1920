@@ -1,10 +1,19 @@
 package Game;
 
 import Game.Objects.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 // Core van het spel
 // @author Massimo
 
@@ -30,6 +39,8 @@ public class GameModel {
     public boolean upgradeOn;
 
     private long upgradeTijd;
+
+    private boolean saving = false;
 
     // Constructor
     public GameModel() {
@@ -61,7 +72,7 @@ public class GameModel {
                         score = score - 1;
                     }
                     remove(e);
-                    
+
                 } else {
                     // UPdate positie van entitie
                     e.setY(e.getY() + e.getdy());
@@ -73,12 +84,10 @@ public class GameModel {
         if (player.getLevens() <= 0) {
             reset();
         }
-        
-        System.out.println("oi");
+
     }
 
     public void reset() {
-        System.out.println("Oei mnsieur. Tu es mort!");
         player.setLevens(5);
         setScore(0);
         entities.clear();
@@ -87,7 +96,7 @@ public class GameModel {
     public Iterator<Entity> getEntities() {
         return entities.iterator();
     }
-    
+
     public ArrayList<Entity> getEntitiesArray() {
         return entities;
     }
@@ -108,7 +117,6 @@ public class GameModel {
      * @param totalTime Dit is de totale tijd die de thread aan het lopen is.
      */
     public void addBullets(long totalTime) {
-        System.out.println("Bullet added");
         ArrayList<Entity> bullets = new ArrayList<Entity>();
         Bullet p = new Bullet(player.getX() + player.getBreedte() / 2, player.getY() - 5, true);
         entities.add(p);
@@ -141,7 +149,6 @@ public class GameModel {
      * @param breedte De breedte die de Enemy moet aan nemen.
      */
     public void addEnemy(double x, double breedte) {
-        System.out.println("Enemy added");
         Enemy e = new Enemy(x, 20, breedte, 20);
         e.setdy(2);
         entities.add(e);
@@ -180,6 +187,12 @@ public class GameModel {
                     // Escape -> Close game
                     stage.close();
                     break;
+                /*case S:
+                    toJson();
+                    break;
+                case L:
+                    load();
+                    break;*/
             }
         } catch (Exception a) {
         }
@@ -235,13 +248,27 @@ public class GameModel {
     *setter upgrade status
      */
     public boolean setUpgradeOn() {
-        upgradeTijd = 0;
+        
+            
         if (upgradeOn == false) {
             upgradeOn = true;
         } else {
             upgradeOn = false;
         }
+        
+        
         return upgradeOn;
+    }
+    public void upgrade(){
+        double upgradeNr = Math.random()*2;
+        System.out.println(upgradeNr);
+        upgradeTijd = 0;
+        if (upgradeNr <= 1){
+            setLevens(10);
+        }
+        else if (upgradeNr <= 2){
+            setUpgradeOn();
+        }
     }
 
     public void setStage(Stage stage) {
@@ -255,14 +282,6 @@ public class GameModel {
      *
      * @param eRemove De te verwijderde Entity.
      */
-    public void removeEntities() {
-        System.out.println("hier");
-        for (Entity e : removeLijst){
-            entities.remove(e);
-        }
-        System.out.println("Hier 2");
-    }
-
     public void remove(Entity eRemove) {
         entities.remove(eRemove);
     }
@@ -285,4 +304,50 @@ public class GameModel {
         player.setLevens(levens);
     }
 
+    public void toJson() {
+        saving = true;
+        try {
+            Gson gsonobject = new Gson();
+            String json = gsonobject.toJson(entities);
+            System.out.println(json);
+            JsonWriter schrijver = gsonobject.newJsonWriter(new FileWriter("dc.json.txt"));
+            schrijver.jsonValue(json);
+            schrijver.close();
+
+        } catch (IOException ex) {
+            System.out.println("Error");
+        }
+        saving = false;
+
+    }
+
+    public boolean isSaving() {
+        return saving;
+    }
+
+    public void load() {
+
+        try {
+            GsonBuilder gsonBouwer = new GsonBuilder();
+            gsonBouwer.registerTypeAdapter(Entity.class, new EntityDeserialiser());
+            Gson gson = gsonBouwer.create();
+            ArrayList nieuw = gson.fromJson(new FileReader("dc.json.txt"), ArrayList.class);
+            
+            
+            System.out.println(entities);
+            entities = (ArrayList<Entity>) nieuw;
+            System.out.println(nieuw);
+            for (Entity e : entities){
+                if (e instanceof Player){
+                    player = (Player) e;
+            }
+            }
+            
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println("error");
+            Logger.getLogger(GameModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

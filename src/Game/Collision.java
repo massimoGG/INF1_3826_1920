@@ -47,12 +47,11 @@ public class Collision {
                                  */
                                 if (e instanceof Player) {
                                     if (e2 instanceof Upgrade) {
-                                        model.setUpgradeOn();
+                                        model.upgrade();
                                         
                                     } 
                                     else {
                                         model.setLevens(model.getLevens() - 1);
-                                        System.out.println("neer geschoten");
                                     }
                                     model.remove(e2);
                                 } 

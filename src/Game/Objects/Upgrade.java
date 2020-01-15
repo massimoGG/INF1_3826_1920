@@ -10,6 +10,7 @@ package Game.Objects;
  * @author royve
  */
 public class Upgrade extends Entity{
+    private boolean isUpgrade = true;
     public Upgrade(double x, double y, double breedte, double hoogte) {
         super(x,y, breedte, hoogte);
     }
