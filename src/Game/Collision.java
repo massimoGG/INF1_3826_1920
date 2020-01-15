@@ -42,7 +42,7 @@ public class Collision {
                                  */
                                 if (e instanceof Player) {
                                     if (e2 instanceof Upgrade) {
-                                        UpgradeOn = true;
+                                        model.setUpgradeOn();
                                         
                                     } 
                                     else {

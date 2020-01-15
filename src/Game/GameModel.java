@@ -27,6 +27,8 @@ public class GameModel {
     //de upgrade status
     public boolean upgradeOn;
     
+    private long upgradeTijd;
+    
     // Constructor
     public GameModel() {
         // Maak een nieuwe speler aan
@@ -62,6 +64,7 @@ public class GameModel {
 
             }
         }
+        
 
         col.isOverlappend();//entities);
 
@@ -100,15 +103,17 @@ public class GameModel {
         ArrayList<Entity> bullets = new ArrayList<Entity>();
         Bullet p = new Bullet(player.getX() + player.getBreedte() / 2, player.getY() - 5, true);
         entities.add(p);
-        
-        while (upgradeOn == true) {
-            
-        Bullet ul = new Bullet(player.getX() -5 + player.getBreedte() / 2, player.getY() - 5, true);
-        entities.add(ul);
-        Bullet ur = new Bullet(player.getX() +5 + player.getBreedte() / 2, player.getY() - 5, true);
-        entities.add(ur);
-        
+        if (upgradeOn){
+            Bullet ul = new Bullet(player.getX() -10 + player.getBreedte() / 2, player.getY() - 5, true);
+            entities.add(ul);
+            Bullet ur = new Bullet(player.getX() +10 + player.getBreedte() / 2, player.getY() - 5, true);
+            entities.add(ur);
+            upgradeTijd++;
+            if (upgradeTijd > 15){
+                setUpgradeOn();
+            }
         }
+        
         
         for (Entity en : entities) {
             if (en instanceof Enemy && totalTime % 1500 == 0) {
