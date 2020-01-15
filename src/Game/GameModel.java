@@ -13,8 +13,10 @@ public class GameModel {
     private Stage stage;
     private GameView view;
 
-    private ArrayList<Entity> entities;
+    private ArrayList<Entity> entities, removeLijst;
+    private Iterator<Entity> lijst;
     private Collision col;
+    private Entity e;
 
     // Onze speler
     public int score = 0;
@@ -23,12 +25,12 @@ public class GameModel {
     // Afmetingen van het scherm
     public double minX = 0;
     public double maxX;
-    
+
     //de upgrade status
     public boolean upgradeOn;
-    
+
     private long upgradeTijd;
-    
+
     // Constructor
     public GameModel() {
         // Maak een nieuwe speler aan
@@ -44,6 +46,8 @@ public class GameModel {
      */
     public void update() {
 
+        ArrayList<Entity> removeLijst = new ArrayList<Entity>();
+
         if (player.getX() + player.getdx() > minX && player.getX() + player.getdx() < maxX) {
             player.setX(player.getX() + player.getdx());
         }
@@ -56,21 +60,21 @@ public class GameModel {
                     if (e instanceof Enemy) {
                         score = score - 1;
                     }
-                    removeEntity(e);
+                    remove(e);
+                    
                 } else {
                     // UPdate positie van entitie
                     e.setY(e.getY() + e.getdy());
                 }
-
             }
         }
-        
-
         col.isOverlappend();//entities);
 
         if (player.getLevens() <= 0) {
             reset();
         }
+        
+        System.out.println("oi");
     }
 
     public void reset() {
@@ -80,7 +84,11 @@ public class GameModel {
         entities.clear();
     }
 
-    public ArrayList<Entity> getEntities() {
+    public Iterator<Entity> getEntities() {
+        return entities.iterator();
+    }
+    
+    public ArrayList<Entity> getEntitiesArray() {
         return entities;
     }
 
@@ -100,21 +108,21 @@ public class GameModel {
      * @param totalTime Dit is de totale tijd die de thread aan het lopen is.
      */
     public void addBullets(long totalTime) {
+        System.out.println("Bullet added");
         ArrayList<Entity> bullets = new ArrayList<Entity>();
         Bullet p = new Bullet(player.getX() + player.getBreedte() / 2, player.getY() - 5, true);
         entities.add(p);
-        if (upgradeOn){
-            Bullet ul = new Bullet(player.getX() -10 + player.getBreedte() / 2, player.getY() - 5, true);
+        if (upgradeOn) {
+            Bullet ul = new Bullet(player.getX() - 10 + player.getBreedte() / 2, player.getY() - 5, true);
             entities.add(ul);
-            Bullet ur = new Bullet(player.getX() +10 + player.getBreedte() / 2, player.getY() - 5, true);
+            Bullet ur = new Bullet(player.getX() + 10 + player.getBreedte() / 2, player.getY() - 5, true);
             entities.add(ur);
             upgradeTijd++;
-            if (upgradeTijd > 15){
+            if (upgradeTijd > 15) {
                 setUpgradeOn();
             }
         }
-        
-        
+
         for (Entity en : entities) {
             if (en instanceof Enemy && totalTime % 1500 == 0) {
                 Bullet be = new Bullet(en.getX() + en.getBreedte() / 2, en.getY() + 50, false);
@@ -133,6 +141,7 @@ public class GameModel {
      * @param breedte De breedte die de Enemy moet aan nemen.
      */
     public void addEnemy(double x, double breedte) {
+        System.out.println("Enemy added");
         Enemy e = new Enemy(x, 20, breedte, 20);
         e.setdy(2);
         entities.add(e);
@@ -221,14 +230,15 @@ public class GameModel {
             this.score = newScore;
         }
     }
+
     /*
     *setter upgrade status
-    */
-    public boolean setUpgradeOn(){
-        if(upgradeOn == false){
+     */
+    public boolean setUpgradeOn() {
+        upgradeTijd = 0;
+        if (upgradeOn == false) {
             upgradeOn = true;
-        }
-        else{
+        } else {
             upgradeOn = false;
         }
         return upgradeOn;
@@ -245,7 +255,15 @@ public class GameModel {
      *
      * @param eRemove De te verwijderde Entity.
      */
-    public void removeEntity(Entity eRemove) {
+    public void removeEntities() {
+        System.out.println("hier");
+        for (Entity e : removeLijst){
+            entities.remove(e);
+        }
+        System.out.println("Hier 2");
+    }
+
+    public void remove(Entity eRemove) {
         entities.remove(eRemove);
     }
 

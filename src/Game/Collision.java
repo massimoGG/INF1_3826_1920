@@ -2,6 +2,7 @@ package Game;
 
 import Game.Objects.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Via deze classe is het mogelijk om te bepalen als er objecten overlappen.
@@ -13,7 +14,7 @@ public class Collision {
 
     private GameModel model;
     private ArrayList<Entity> lijst;
-    public boolean UpgradeOn;
+    private Entity e,e2;
     public Collision(GameModel model) {
         this.model = model;
     }
@@ -24,7 +25,11 @@ public class Collision {
      * moet gebeuren.
      */
     public void isOverlappend() {
-        lijst = model.getEntities();
+        /*
+        We gebruiken hier de originele lijst, dit omdat een Iterator voor ieder deel van de lijst een nieuw object maakt.
+        Dit zorgt er voor dat als we deze willen weg dit niet mogelijk is.
+        */
+        lijst = model.getEntitiesArray();
         for (Entity e : lijst) {
             for (Entity e2 : lijst) {
                 if (!(e2 instanceof Player)) {
@@ -49,12 +54,12 @@ public class Collision {
                                         model.setLevens(model.getLevens() - 1);
                                         System.out.println("neer geschoten");
                                     }
-                                    model.removeEntity(e2);
+                                    model.remove(e2);
                                 } 
                                 else {
                                     if (!(e instanceof Upgrade || e2 instanceof Upgrade)) {
-                                        model.removeEntity(e);
-                                        model.removeEntity(e2);
+                                        model.remove(e);
+                                        model.remove(e2);
                                         model.setScore(model.getScore() + 5);
                                     }
                                 }

@@ -32,6 +32,7 @@ public class Core implements Runnable {
                     //controller.lblScore.setText("Score: "+model.getEntities().size());
                     controller.lblLevens.setText("Levens: "+model.getPlayer().getLevens());
                 });
+                
                 model.update(); 
                 
                 /**
@@ -71,6 +72,7 @@ public class Core implements Runnable {
                  */
                 Thread.sleep(dtime); 
                 totalTime = totalTime + dtime;
+                model.removeEntities();
             }catch(Exception e) {
              /*   err++;
                 System.out.println("ERROR : run() : "+e.getMessage());
