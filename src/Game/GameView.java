@@ -17,14 +17,19 @@ public class GameView extends Region {
     private UpgradeView uView;
     private Iterator<Entity> lijst;
     private Entity e;
+    private GameController controller;
 
-    public GameView(GameModel model) {
+    public GameView(GameModel model, GameController controller) {
         this.model = model;
+        this.controller = controller;
     }
 
     // Render alle objected die op het scherm moeten verschijnen
     public void render() {
         try {
+            controller.lblScore.setText("Score: " + model.getScore());
+            //controller.lblScore.setText("Score: "+model.getEntities().size());
+            controller.lblLevens.setText("Levens: " + model.getPlayer().getLevens());
 
             getChildren().clear();
             lijst = model.getEntities();
