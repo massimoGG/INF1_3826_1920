@@ -89,9 +89,15 @@ public class GameModel {
     }
 
     public void reset() {
-        player.setLevens(5);
+/*        player.setLevens(5);
         setScore(0);
-        entities.clear();
+        entities.clear();*/
+        player = new Player(50, 50);
+        // Al uw objecten
+        entities = new ArrayList<Entity>();
+        col = new Collision(this);
+        entities.add(player);
+        player.setY(stage.getHeight()-150);
     }
 
     public Iterator<Entity> getEntities() {

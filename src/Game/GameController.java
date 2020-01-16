@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class GameController {
-
     @FXML
     private ResourceBundle resources;
 
@@ -20,6 +19,12 @@ public class GameController {
 
     @FXML
     private AnchorPane paneGame;
+
+    @FXML
+    public Label lblScore;
+
+    @FXML
+    public Label lblLevens;
 
     @FXML
     private Button btnPlay;
@@ -35,22 +40,16 @@ public class GameController {
 
     @FXML
     private Label lblHS;
-    
-    @FXML
-    private Label lblHS1;
 
     @FXML
-    private Label lblHS2;
+    private Label lblHS1;
 
     @FXML
     private Label lblHS3;
 
     @FXML
-    public Label lblScore;
+    private Label lblHS2;
 
-    @FXML
-    public Label lblLevens;
-    
     @FXML
     void initialize() {
         assert paneMain != null : "fx:id=\"paneMain\" was not injected: check your FXML file 'FXMLView.fxml'.";
@@ -122,11 +121,9 @@ public class GameController {
          lblHS3.setVisible(statusMenu);
          lblScore.setVisible(!statusMenu);
          lblLevens.setVisible(!statusMenu);
-         
+         paneGame.setVisible(true);
          this.statusMenu = statusMenu;
     }
-    
-    
 
     public void setModel(GameModel model) {
         this.model = model;
