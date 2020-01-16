@@ -172,7 +172,7 @@ public class GameModel {
      *
      * @param e Het KeyEvent wat gemaakt is.
      */
-    public void keyEvent(KeyEvent e) {
+    public void move(KeyEvent e) {
         try {
             switch (e.getCode()) {
                 case LEFT:
@@ -185,7 +185,7 @@ public class GameModel {
                     player.setdx(5);
                     break;
                 case ESCAPE:
-                    // Escape -> Go to game menu
+                    // Escape -> Close game
                     stage.close();
                     break;
                 case S:
@@ -204,7 +204,7 @@ public class GameModel {
      *
      * @param e Het KeyEvent wat gemaakt is.
      */
-    public void deKeyEvent(KeyEvent e) {
+    public void demove(KeyEvent e) {
         try {
             switch (e.getCode()) {
                 case LEFT:
@@ -305,22 +305,16 @@ public class GameModel {
         player.setLevens(levens);
     }
 
-    /**
-     * Het spel opslaan
-     */
     public void toJson() {
         saving = true;
         try {
             Entity[] lijst = new Entity[entities.size()];
             int i = 0;
-            // Omvormen van ArrayList naar java lijst
             for (Entity e : entities){
                 lijst[i] = e;
                 i++;
             }
-            // Maak Gson object aan
             Gson gsonobject = new Gson();
-            // Schrijf de entities 
             String json = gsonobject.toJson(lijst);
             System.out.println(json);
             JsonWriter schrijver = gsonobject.newJsonWriter(new FileWriter("dc.json.txt"));
