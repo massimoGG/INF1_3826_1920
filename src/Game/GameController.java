@@ -110,11 +110,11 @@ public class GameController {
         });
         
         btnLoad.setOnAction(e -> {
-            model.stopSpel();
+            model.load();
         });
         
         btnSave.setOnAction(e -> {
-            model.stopSpel();
+            model.toJson();
         });
     }
 

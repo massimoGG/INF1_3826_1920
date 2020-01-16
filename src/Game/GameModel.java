@@ -343,26 +343,34 @@ public class GameModel {
     public void load() {
 
         try {
-            /*JsonReader fileReader = new JsonReader(new FileReader("dc.json.txt"));
+            /*
+            JsonReader fileReader = new JsonReader(new FileReader("dc.json.txt"));
             Gson gson = new Gson();
             Player newPlayer = gson.fromJson(fileReader, Player.class);
             entities.remove(player);
             player = newPlayer;
-            entities.add(player);*/
-            
+            entities.add(player);
+            */
             
             
             
             GsonBuilder gsonBouwer = new GsonBuilder();
+            
             gsonBouwer.registerTypeAdapter(Entity.class, new EntityDeserialiser());
+            
             Gson gson = gsonBouwer.create();
+            
             FileReader file = new FileReader("dc.json.txt");
+            
             ArrayList nieuw = gson.fromJson(file, ArrayList.class);
             
             
             System.out.println(entities);
+            
             entities = (ArrayList<Entity>) nieuw;
+            
             System.out.println(nieuw);
+            
             for (Entity e : entities){
                 if (e instanceof Player){
                     player = (Player) e;
