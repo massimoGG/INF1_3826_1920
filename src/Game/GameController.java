@@ -100,7 +100,11 @@ public class GameController {
     private GameModel model;
     private GameView view;
     
-    public void showMeny(boolean WAT) {
+    public void showMenu() {
+        
+    }
+    
+    public void hideMenu() {
         
     }
 
