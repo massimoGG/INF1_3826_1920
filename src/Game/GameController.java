@@ -99,6 +99,10 @@ public class GameController {
 
     private GameModel model;
     private GameView view;
+    
+    public void showMeny(boolean WAT) {
+        
+    }
 
     public void setModel(GameModel model) {
         this.model = model;
