@@ -25,16 +25,40 @@ public class GameController {
     private Button btnPlay;
 
     @FXML
+    private Button btnLoad;
+
+    @FXML
+    private Button btnquit;
+
+    @FXML
+    private Button btnSave;
+
+    @FXML
+    private Label lblHS1;
+
+    @FXML
+    private Label lblHS2;
+
+    @FXML
+    private Label lblHS3;
+
+    @FXML
     public Label lblScore;
 
     @FXML
     public Label lblLevens;
-
+    
     @FXML
     void initialize() {
         assert paneMain != null : "fx:id=\"paneMain\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert paneGame != null : "fx:id=\"paneGame\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert btnPlay != null : "fx:id=\"btnPlay\" was not injected: check your FXML file 'FXMLView.fxml'.";
+        assert btnLoad != null : "fx:id=\"btnLoad\" was not injected: check your FXML file 'FXMLView.fxml'.";
+        assert btnquit != null : "fx:id=\"btnquit\" was not injected: check your FXML file 'FXMLView.fxml'.";
+        assert btnSave != null : "fx:id=\"btnSave\" was not injected: check your FXML file 'FXMLView.fxml'.";
+        assert lblHS1 != null : "fx:id=\"lblHS1\" was not injected: check your FXML file 'FXMLView.fxml'.";
+        assert lblHS2 != null : "fx:id=\"lblHS2\" was not injected: check your FXML file 'FXMLView.fxml'.";
+        assert lblHS3 != null : "fx:id=\"lblHS3\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblScore != null : "fx:id=\"lblScore\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblLevens != null : "fx:id=\"lblLevens\" was not injected: check your FXML file 'FXMLView.fxml'.";
 
@@ -75,6 +99,10 @@ public class GameController {
 
     private GameModel model;
     private GameView view;
+    
+    public void showMeny(boolean WAT) {
+        
+    }
 
     public void setModel(GameModel model) {
         this.model = model;

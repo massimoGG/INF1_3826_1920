@@ -9,7 +9,14 @@
    <children>
       <AnchorPane fx:id="paneGame" focusTraversable="true" layoutX="10.0" layoutY="50.0" prefHeight="540.0" prefWidth="380.0">
          <children>
-            <Button fx:id="btnPlay" focusTraversable="false" layoutX="171.0" layoutY="258.0" mnemonicParsing="false" text="Play" />
+            <Button fx:id="btnPlay" focusTraversable="false" layoutX="173.0" layoutY="44.0" mnemonicParsing="false" text="Play" />
+            <Button fx:id="btnLoad" focusTraversable="false" layoutX="170.0" layoutY="99.0" mnemonicParsing="false" text="Load" />
+            <Button fx:id="btnquit" focusTraversable="false" layoutX="172.0" layoutY="152.0" mnemonicParsing="false" text="Quit" />
+            <Button fx:id="btnSave" focusTraversable="false" layoutX="171.0" layoutY="197.0" mnemonicParsing="false" text="Save" />
+            <Label layoutX="35.0" layoutY="300.0" text="high scores" textFill="WHITE" />
+            <Label fx:id="lblHS1" layoutX="96.0" layoutY="336.0" text="Label" textFill="WHITE" />
+            <Label fx:id="lblHS2" layoutX="96.0" layoutY="373.0" text="Label" textFill="WHITE" />
+            <Label fx:id="lblHS3" layoutX="96.0" layoutY="413.0" text="Label" textFill="WHITE" />
          </children>
       </AnchorPane>
       <Label fx:id="lblScore" layoutX="14.0" layoutY="14.0" text="Score" textFill="WHITE">
