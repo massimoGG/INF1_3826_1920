@@ -9,16 +9,23 @@ import Game.Objects.Entity;
 import com.google.gson.*;
 import java.lang.reflect.Type;
 import Game.Objects.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author Michiel Claes
  */
-public class EntityDeserialiser implements JsonDeserializer<Entity> {
+public class EntityDeserialiser implements JsonDeserializer<ArrayList> {
 
-    public Entity deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-        throws JsonParseException {
-            JsonObject jObject = json.getAsJsonObject();
+    public ArrayList deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+            throws JsonParseException {
+        ArrayList<Entity> lijst = new ArrayList<Entity>();
+
+        JsonArray jArray = json.getAsJsonArray();
+        for (JsonElement jOb : jArray) {
+
+            JsonObject jObject = jOb.getAsJsonObject();
+
             JsonElement jLevens = jObject.get("levens");
             JsonElement jIsVanPlayer = jObject.get("isVanPlayer");
             JsonElement jX = jObject.get("x");
@@ -29,31 +36,27 @@ public class EntityDeserialiser implements JsonDeserializer<Entity> {
             JsonElement jHoogte = jObject.get("hoogte");
             JsonElement jIsUpgrade = jObject.get("isUpgrade");
             JsonElement jIsEnemy = jObject.get("isEnemy");
-            
-            
-            if (jLevens != null){
+
+            if (jLevens != null) {
                 Player p = new Player(jX.getAsInt(), jY.getAsInt());
                 p.setLevens(jLevens.getAsInt());
-                return p;
-            }
-            else if (jIsVanPlayer != null){
+                lijst.add(p);
+            } else if (jIsVanPlayer != null) {
                 Bullet b = new Bullet(jX.getAsInt(), jY.getAsInt(), jIsVanPlayer.getAsBoolean());
-                return b;
-            }
-            else if (jIsUpgrade != null){
+                lijst.add(b);
+            } else if (jIsUpgrade != null) {
                 Upgrade u = new Upgrade(jX.getAsInt(), jY.getAsInt(), jBreedte.getAsInt(), jHoogte.getAsInt());
-                return u;
-            }
-            else if (jIsEnemy != null){
+                lijst.add(u);
+            } else if (jIsEnemy != null) {
                 Enemy e = new Enemy(jX.getAsInt(), jY.getAsInt(), jBreedte.getAsInt(), jHoogte.getAsInt());
-                return e;
-            }
-            else {
+                e.setdy(2);
+                lijst.add(e);
+            } else {
                 return null;
             }
-            
-        
+        }
 
+        return lijst;
     }
 
 }

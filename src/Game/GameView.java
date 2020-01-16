@@ -22,14 +22,15 @@ public class GameView extends Region {
     public GameView(GameModel model, GameController controller) {
         this.model = model;
         this.controller = controller;
+
     }
 
     // Render alle objected die op het scherm moeten verschijnen
     public void render() {
         try {
-            controller.lblScore.setText("Score: " + model.getScore());
-            //controller.lblScore.setText("Score: "+model.getEntities().size());
-            controller.lblLevens.setText("Levens: " + model.getPlayer().getLevens());
+            controller.setTekstScore("Score: " + model.getScore());
+            controller.setTekstLevens("Levens: " + model.getPlayer().getLevens());
+            updateHighscore();
 
             getChildren().clear();
             lijst = model.getEntities();
@@ -58,6 +59,13 @@ public class GameView extends Region {
         } catch (Exception e) {
 
         }
+    }
+
+    public void updateHighscore() {
+        Highscore highscore = model.getHighscore();
+        controller.setTekstHighscore1("Highscore 1:" + highscore.getHighscore1());
+        controller.setTekstHighscore2("Highscore 2:" + highscore.getHighscore2());
+        controller.setTekstHighscore3("Highscore 3:" + highscore.getHighscore3());
     }
 
 }

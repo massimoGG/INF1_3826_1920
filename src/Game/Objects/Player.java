@@ -1,7 +1,7 @@
 package Game.Objects;
 
 public class Player extends Entity {
-    private int levens;
+    private int levens, score = 0;
     public Player(double x, double y) {
         super(x, y, 20, 20);
         levens = 5;
@@ -13,6 +13,14 @@ public class Player extends Entity {
 
     public void setLevens(int levens) {
         this.levens = levens;
+    }
+    
+    public int getScore(){
+        return score;
+    }
+    
+    public void setScore(int score){
+        this.score = score;
     }
     
 }

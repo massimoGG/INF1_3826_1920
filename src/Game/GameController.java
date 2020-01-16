@@ -1,5 +1,6 @@
 package Game;
 
+import Game.Objects.Highscore;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -21,10 +22,10 @@ public class GameController {
     private AnchorPane paneGame;
 
     @FXML
-    public Label lblScore;
+    private Label lblScore;
 
     @FXML
-    public Label lblLevens;
+    private Label lblLevens;
 
     @FXML
     private Button btnPlay;
@@ -52,6 +53,7 @@ public class GameController {
 
     @FXML
     void initialize() {
+        
         assert paneMain != null : "fx:id=\"paneMain\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert paneGame != null : "fx:id=\"paneGame\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert btnPlay != null : "fx:id=\"btnPlay\" was not injected: check your FXML file 'FXMLView.fxml'.";
@@ -79,6 +81,7 @@ public class GameController {
                 // Start het spel! 
                 view = new GameView(model, this);
                 paneGame.getChildren().add(view);
+                
 
                 // De updater (50 TPS)
                 if (!isRunning) {
@@ -99,6 +102,8 @@ public class GameController {
                 paneGame.setOnKeyReleased(ev -> {
                     model.deKeyEvent(ev);
                 });
+                
+                
 
             } else {
                 btnPlay.setVisible(true);
@@ -150,5 +155,32 @@ public class GameController {
         //view = new GameView(model);
         // Key events
         paneGame.setFocusTraversable(true);
+        model.loadHighscore();
+        Highscore highscore = model.getHighscore();
+        setTekstHighscore1("Highscore 1:" + highscore.getHighscore1());
+        setTekstHighscore2("Highscore 2:" + highscore.getHighscore2());
+        setTekstHighscore3("Highscore 3:" + highscore.getHighscore3());
+        
+        
+    }
+    
+    public void setTekstScore(String string){
+        lblScore.setText(string);
+    }
+    
+    public void setTekstLevens(String string){
+        lblLevens.setText(string);
+    }
+    
+    public void setTekstHighscore1(String string){
+        lblHS1.setText(string);
+    }
+    
+    public void setTekstHighscore2(String string){
+        lblHS2.setText(string);
+    }
+    
+    public void setTekstHighscore3(String string){
+        lblHS3.setText(string);
     }
 }
