@@ -64,7 +64,9 @@ public class GameController {
         assert lblHS3 != null : "fx:id=\"lblHS3\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblScore != null : "fx:id=\"lblScore\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblLevens != null : "fx:id=\"lblLevens\" was not injected: check your FXML file 'FXMLView.fxml'.";
-
+        
+        
+        
         btnPlay.setOnAction(e -> {
 
             // Toggle de play knop
@@ -78,14 +80,17 @@ public class GameController {
                 view = new GameView(model, this);
                 paneGame.getChildren().add(view);
 
+                // De updater (50 TPS)
+                if (!isRunning) {
+                    Core core = new Core(model, view, this);
+                    Thread t = new Thread(core);
+                    t.setDaemon(true);
+                    t.start();
+                    isRunning = true;
+                }
+                
                 // Maximum X
                 model.maxX = (int) paneGame.getWidth() - 10;
-
-                // De updater (50 TPS)
-                Core core = new Core(model, view, this);
-                Thread t = new Thread(core);
-                t.setDaemon(true);
-                t.start();
 
                 // Key events nog accepteren wanneer het spel gestart is
                 paneGame.setOnKeyPressed(ev -> {
@@ -99,10 +104,25 @@ public class GameController {
                 btnPlay.setVisible(true);
             }
         });
+        
+        btnQuit.setOnAction(e -> {
+            model.stopSpel();
+        });
+        
+        btnLoad.setOnAction(e -> {
+            model.stopSpel();
+        });
+        
+        btnSave.setOnAction(e -> {
+            model.stopSpel();
+        });
     }
 
     private GameModel model;
     private GameView view;
+    private boolean isRunning = false;
+    
+    // ! TO DO FIX DEZE SHIT VOOR KLAGENDE MICHIEL
     public boolean statusMenu = true;
     
          

@@ -225,9 +225,9 @@ public class GameModel {
         } catch (Exception a) {
         }
     }
-
-    public void stopBewging() {
-        player.setdx(0);
+    
+    public void stopSpel() {
+        stage.close();
     }
 
     /**
@@ -263,13 +263,10 @@ public class GameModel {
         } else {
             upgradeOn = false;
         }
-        
-        
         return upgradeOn;
     }
     public void upgrade(){
         double upgradeNr = Math.random()*2;
-        System.out.println(upgradeNr);
         upgradeTijd = 0;
         if (upgradeNr <= 1){
             setLevens(10);
