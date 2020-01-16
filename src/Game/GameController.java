@@ -61,10 +61,10 @@ public class GameController {
 
                 // Key events nog accepteren wanneer het spel gestart is
                 paneGame.setOnKeyPressed(ev -> {
-                    model.move(ev);
+                    model.keyEvent(ev);
                 });
                 paneGame.setOnKeyReleased(ev -> {
-                    model.demove(ev);
+                    model.deKeyEvent(ev);
                 });
 
             } else {
