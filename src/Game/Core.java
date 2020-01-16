@@ -24,7 +24,8 @@ public class Core implements Runnable {
     @Override
     public void run() {
         int err = 0;
-        while (true) {
+        while(true){
+        while (!controller.statusMenu) {
             try {
                 // Run dit in de JavaFX thread
                 Platform.runLater(() -> {
@@ -81,6 +82,8 @@ public class Core implements Runnable {
                     return;
                 }*/
             }
-        }
+        } 
+        Thread.sleep(dtime);
+    }
     }
 }

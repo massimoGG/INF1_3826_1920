@@ -28,11 +28,14 @@ public class GameController {
     private Button btnLoad;
 
     @FXML
-    private Button btnquit;
+    private Button btnQuit;
 
     @FXML
     private Button btnSave;
 
+    @FXML
+    private Label lblHS;
+    
     @FXML
     private Label lblHS1;
 
@@ -54,8 +57,9 @@ public class GameController {
         assert paneGame != null : "fx:id=\"paneGame\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert btnPlay != null : "fx:id=\"btnPlay\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert btnLoad != null : "fx:id=\"btnLoad\" was not injected: check your FXML file 'FXMLView.fxml'.";
-        assert btnquit != null : "fx:id=\"btnquit\" was not injected: check your FXML file 'FXMLView.fxml'.";
+        assert btnQuit != null : "fx:id=\"btnquit\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert btnSave != null : "fx:id=\"btnSave\" was not injected: check your FXML file 'FXMLView.fxml'.";
+        assert lblHS != null : "fx:id=\"lblHS\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblHS1 != null : "fx:id=\"lblHS1\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblHS2 != null : "fx:id=\"lblHS2\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblHS3 != null : "fx:id=\"lblHS3\" was not injected: check your FXML file 'FXMLView.fxml'.";
@@ -68,7 +72,8 @@ public class GameController {
             if (btnPlay.isVisible()) {
 
                 // Verstop de knop
-                btnPlay.setVisible(false);
+                showMenu(false);
+                model.setController(this);
 
                 // Start het spel! 
                 view = new GameView(model, this);
@@ -85,10 +90,10 @@ public class GameController {
 
                 // Key events nog accepteren wanneer het spel gestart is
                 paneGame.setOnKeyPressed(ev -> {
-                    model.move(ev);
+                    model.KeyEvent(ev);
                 });
                 paneGame.setOnKeyReleased(ev -> {
-                    model.demove(ev);
+                    model.deKeyEvent(ev);
                 });
 
             } else {
@@ -99,14 +104,29 @@ public class GameController {
 
     private GameModel model;
     private GameView view;
+    public boolean statusMenu = true;
     
-    public void showMenu() {
-        
+         
+    /**
+     * laat het menu zien
+     * @param statusMenu
+     */
+    public void showMenu(boolean statusMenu) {
+         btnPlay.setVisible(statusMenu);
+         btnLoad.setVisible(statusMenu);
+         btnQuit.setVisible(statusMenu);
+         btnSave.setVisible(statusMenu);
+         lblHS.setVisible(statusMenu);
+         lblHS1.setVisible(statusMenu);
+         lblHS2.setVisible(statusMenu);
+         lblHS3.setVisible(statusMenu);
+         lblScore.setVisible(!statusMenu);
+         lblLevens.setVisible(!statusMenu);
+         
+         this.statusMenu = statusMenu;
     }
     
-    public void hideMenu() {
-        
-    }
+    
 
     public void setModel(GameModel model) {
         this.model = model;

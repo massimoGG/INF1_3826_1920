@@ -20,9 +20,9 @@ import java.util.logging.Logger;
 
 public class GameModel {
 
-    private Stage stage;
+    private GameController controller;
     private GameView view;
-
+    private Stage stage;
     private ArrayList<Entity> entities, removeLijst;
     private Iterator<Entity> lijst;
     private Collision col;
@@ -172,7 +172,7 @@ public class GameModel {
      *
      * @param e Het KeyEvent wat gemaakt is.
      */
-    public void move(KeyEvent e) {
+    public void KeyEvent(KeyEvent e) {
         try {
             switch (e.getCode()) {
                 case LEFT:
@@ -186,7 +186,7 @@ public class GameModel {
                     break;
                 case ESCAPE:
                     // Escape -> Close game
-                    stage.close();
+                    controller.showMenu(true);
                     break;
                 case S:
                     toJson();
@@ -204,7 +204,7 @@ public class GameModel {
      *
      * @param e Het KeyEvent wat gemaakt is.
      */
-    public void demove(KeyEvent e) {
+    public void deKeyEvent(KeyEvent e) {
         try {
             switch (e.getCode()) {
                 case LEFT:
@@ -214,6 +214,7 @@ public class GameModel {
                 case D:
                     player.setdx(0);
                     break;
+               
             }
         } catch (Exception a) {
         }
@@ -272,12 +273,16 @@ public class GameModel {
         }
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-        player.setY(stage.getHeight() - 150);
-
+    public void setController(GameController controller) {
+        this.controller = controller;
+        
     }
-
+    
+     public void setStage(Stage stage) {
+        this.stage = stage;
+        player.setY(stage.getHeight()-150);
+        
+    }
     /**
      * Deze haalt de mee gegeven Entity uit de lijst.
      *
