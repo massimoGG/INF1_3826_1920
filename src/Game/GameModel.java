@@ -220,6 +220,7 @@ public class GameModel {
     }
 
     public void stopSpel() {
+        highscore.addHighscore(player.getScore());
         saveHighscore();
         stage.close();
     }
@@ -319,7 +320,6 @@ public class GameModel {
             }
             Gson gsonobject = new Gson();
             String json = gsonobject.toJson(lijst);
-            System.out.println(json);
             JsonWriter schrijver = gsonobject.newJsonWriter(new FileWriter("save.json"));
             schrijver.jsonValue(json);
             schrijver.close();
@@ -363,7 +363,7 @@ public class GameModel {
             }
 
         } catch (FileNotFoundException ex) {
-            System.out.println("error");
+            System.out.println("Error");
             Logger.getLogger(GameModel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -373,7 +373,6 @@ public class GameModel {
         try {
             Gson gsonobject = new Gson();
             String json = gsonobject.toJson(highscore);
-            System.out.println(json);
             JsonWriter schrijver = gsonobject.newJsonWriter(new FileWriter("highscore.json"));
             schrijver.jsonValue(json);
             schrijver.close();
