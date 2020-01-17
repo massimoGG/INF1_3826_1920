@@ -1,5 +1,6 @@
 package Game;
 
+import Game.Objects.Highscore;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -21,10 +22,10 @@ public class GameController {
     private AnchorPane paneGame;
 
     @FXML
-    public Label lblScore;
+    private Label lblScore;
 
     @FXML
-    public Label lblLevens;
+    private Label lblLevens;
 
     @FXML
     private Button btnPlay;
@@ -52,6 +53,7 @@ public class GameController {
 
     @FXML
     void initialize() {
+        
         assert paneMain != null : "fx:id=\"paneMain\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert paneGame != null : "fx:id=\"paneGame\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert btnPlay != null : "fx:id=\"btnPlay\" was not injected: check your FXML file 'FXMLView.fxml'.";
@@ -64,7 +66,9 @@ public class GameController {
         assert lblHS3 != null : "fx:id=\"lblHS3\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblScore != null : "fx:id=\"lblScore\" was not injected: check your FXML file 'FXMLView.fxml'.";
         assert lblLevens != null : "fx:id=\"lblLevens\" was not injected: check your FXML file 'FXMLView.fxml'.";
-
+        
+        
+        
         btnPlay.setOnAction(e -> {
 
             // Toggle de play knop
@@ -77,15 +81,19 @@ public class GameController {
                 // Start het spel! 
                 view = new GameView(model, this);
                 paneGame.getChildren().add(view);
-
-                // Maximum X
-                model.maxX = (int) paneGame.getWidth() - 10;
+                
 
                 // De updater (50 TPS)
-                Core core = new Core(model, view, this);
-                Thread t = new Thread(core);
-                t.setDaemon(true);
-                t.start();
+                if (!isRunning) {
+                    Core core = new Core(model, view, this);
+                    Thread t = new Thread(core);
+                    t.setDaemon(true);
+                    t.start();
+                    isRunning = true;
+                }
+                
+                // Maximum X
+                model.maxX = (int) paneGame.getWidth() - 10;
 
                 // Key events nog accepteren wanneer het spel gestart is
                 paneGame.setOnKeyPressed(ev -> {
@@ -94,15 +102,32 @@ public class GameController {
                 paneGame.setOnKeyReleased(ev -> {
                     model.deKeyEvent(ev);
                 });
+                
+                
 
             } else {
                 btnPlay.setVisible(true);
             }
         });
+        
+        btnQuit.setOnAction(e -> {
+            model.stopSpel();
+        });
+        
+        btnLoad.setOnAction(e -> {
+            model.load();
+        });
+        
+        btnSave.setOnAction(e -> {
+            model.toJson();
+        });
     }
 
     private GameModel model;
     private GameView view;
+    private boolean isRunning = false;
+    
+    // ! TO DO FIX DEZE SHIT VOOR KLAGENDE MICHIEL
     public boolean statusMenu = true;
     
          
@@ -130,5 +155,32 @@ public class GameController {
         //view = new GameView(model);
         // Key events
         paneGame.setFocusTraversable(true);
+        model.loadHighscore();
+        Highscore highscore = model.getHighscore();
+        setTekstHighscore1("Highscore 1:" + highscore.getHighscore1());
+        setTekstHighscore2("Highscore 2:" + highscore.getHighscore2());
+        setTekstHighscore3("Highscore 3:" + highscore.getHighscore3());
+        
+        
+    }
+    
+    public void setTekstScore(String string){
+        lblScore.setText(string);
+    }
+    
+    public void setTekstLevens(String string){
+        lblLevens.setText(string);
+    }
+    
+    public void setTekstHighscore1(String string){
+        lblHS1.setText(string);
+    }
+    
+    public void setTekstHighscore2(String string){
+        lblHS2.setText(string);
+    }
+    
+    public void setTekstHighscore3(String string){
+        lblHS3.setText(string);
     }
 }

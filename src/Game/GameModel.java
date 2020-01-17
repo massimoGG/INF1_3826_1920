@@ -27,9 +27,9 @@ public class GameModel {
     private Iterator<Entity> lijst;
     private Collision col;
     private Entity e;
+    private Highscore highscore;
 
     // Onze speler
-    public int score = 0;
     private static Player player;
 
     // Afmetingen van het scherm
@@ -58,8 +58,6 @@ public class GameModel {
      */
     public void update() {
 
-        ArrayList<Entity> removeLijst = new ArrayList<Entity>();
-
         if (player.getX() + player.getdx() > minX && player.getX() + player.getdx() < maxX) {
             player.setX(player.getX() + player.getdx());
         }
@@ -70,7 +68,7 @@ public class GameModel {
                 // Hou de vijanden binnen het scherm?
                 if (e.getY() > stage.getHeight() - e.getHoogte() - 50 || e.getY() < 0) {
                     if (e instanceof Enemy) {
-                        score = score - 1;
+                        player.setScore(player.getScore() - 1);
                     }
                     remove(e);
 
@@ -89,15 +87,16 @@ public class GameModel {
     }
 
     public void reset() {
-/*        player.setLevens(5);
+        /*        player.setLevens(5);
         setScore(0);
         entities.clear();*/
+        highscore.addHighscore(player.getScore());
         player = new Player(50, 50);
         // Al uw objecten
         entities = new ArrayList<Entity>();
         col = new Collision(this);
         entities.add(player);
-        player.setY(stage.getHeight()-150);
+        player.setY(stage.getHeight() - 150);
     }
 
     public Iterator<Entity> getEntities() {
@@ -194,12 +193,6 @@ public class GameModel {
                     // Escape -> Close game
                     controller.showMenu(true);
                     break;
-                case S:
-                    toJson();
-                    break;
-                /*case L:
-                    load();
-                    break;*/
             }
         } catch (Exception a) {
         }
@@ -220,14 +213,15 @@ public class GameModel {
                 case D:
                     player.setdx(0);
                     break;
-               
+
             }
         } catch (Exception a) {
         }
     }
 
-    public void stopBewging() {
-        player.setdx(0);
+    public void stopSpel() {
+        saveHighscore();
+        stage.close();
     }
 
     /**
@@ -236,7 +230,7 @@ public class GameModel {
      * @return De score
      */
     public int getScore() {
-        return score;
+        return player.getScore();
     }
 
     /**
@@ -246,9 +240,9 @@ public class GameModel {
      */
     public void setScore(int newScore) {
         if (newScore <= 0) {
-            this.score = 0;
+            player.setScore(0);
         } else {
-            this.score = newScore;
+            player.setScore(newScore);
         }
     }
 
@@ -256,39 +250,36 @@ public class GameModel {
     *setter upgrade status
      */
     public boolean setUpgradeOn() {
-        
-            
+
         if (upgradeOn == false) {
             upgradeOn = true;
         } else {
             upgradeOn = false;
         }
-        
-        
         return upgradeOn;
     }
-    public void upgrade(){
-        double upgradeNr = Math.random()*2;
-        System.out.println(upgradeNr);
+
+    public void upgrade() {
+        double upgradeNr = Math.random() * 2;
         upgradeTijd = 0;
-        if (upgradeNr <= 1){
-            setLevens(10);
-        }
-        else if (upgradeNr <= 2){
+        if (upgradeNr <= 1) {
+            setLevens(getLevens() + 3);
+        } else if (upgradeNr <= 2) {
             setUpgradeOn();
         }
     }
 
     public void setController(GameController controller) {
         this.controller = controller;
-        
+
     }
-    
-     public void setStage(Stage stage) {
+
+    public void setStage(Stage stage) {
         this.stage = stage;
-        player.setY(stage.getHeight()-150);
-        
+        player.setY(stage.getHeight() - 150);
+
     }
+
     /**
      * Deze haalt de mee gegeven Entity uit de lijst.
      *
@@ -318,17 +309,18 @@ public class GameModel {
 
     public void toJson() {
         saving = true;
+        saveHighscore();
         try {
             Entity[] lijst = new Entity[entities.size()];
             int i = 0;
-            for (Entity e : entities){
+            for (Entity e : entities) {
                 lijst[i] = e;
                 i++;
             }
             Gson gsonobject = new Gson();
             String json = gsonobject.toJson(lijst);
             System.out.println(json);
-            JsonWriter schrijver = gsonobject.newJsonWriter(new FileWriter("dc.json.txt"));
+            JsonWriter schrijver = gsonobject.newJsonWriter(new FileWriter("save.json"));
             schrijver.jsonValue(json);
             schrijver.close();
 
@@ -346,37 +338,67 @@ public class GameModel {
     public void load() {
 
         try {
-            /*JsonReader fileReader = new JsonReader(new FileReader("dc.json.txt"));
+            /*
+            JsonReader fileReader = new JsonReader(new FileReader("dc.json.txt"));
             Gson gson = new Gson();
             Player newPlayer = gson.fromJson(fileReader, Player.class);
             entities.remove(player);
             player = newPlayer;
-            entities.add(player);*/
-            
-            
-            
-            
+            entities.add(player);
+             */
+
+            loadHighscore();
+
             GsonBuilder gsonBouwer = new GsonBuilder();
-            gsonBouwer.registerTypeAdapter(Entity.class, new EntityDeserialiser());
+            gsonBouwer.registerTypeAdapter(ArrayList.class, new EntityDeserialiser());
             Gson gson = gsonBouwer.create();
-            FileReader file = new FileReader("dc.json.txt");
+            FileReader file = new FileReader("save.json");
             ArrayList nieuw = gson.fromJson(file, ArrayList.class);
-            
-            
-            System.out.println(entities);
-            entities = (ArrayList<Entity>) nieuw;
-            System.out.println(nieuw);
-            for (Entity e : entities){
-                if (e instanceof Player){
+            entities.clear();
+            entities.addAll(nieuw);
+            for (Entity e : entities) {
+                if (e instanceof Player) {
                     player = (Player) e;
+                }
             }
-            }
-            
-            
+
         } catch (FileNotFoundException ex) {
             System.out.println("error");
             Logger.getLogger(GameModel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void saveHighscore() {
+        try {
+            Gson gsonobject = new Gson();
+            String json = gsonobject.toJson(highscore);
+            System.out.println(json);
+            JsonWriter schrijver = gsonobject.newJsonWriter(new FileWriter("highscore.json"));
+            schrijver.jsonValue(json);
+            schrijver.close();
+
+        } catch (IOException ex) {
+            System.out.println("Error");
+        }
+
+    }
+
+    public void loadHighscore() {
+
+        try {
+            JsonReader fileReader = new JsonReader(new FileReader("highscore.json"));
+            Gson gson = new Gson();
+            Highscore newHighscore = gson.fromJson(fileReader, Highscore.class);
+            highscore = newHighscore;
+
+        } catch (FileNotFoundException ex) {
+            highscore = new Highscore(0, 0, 0);
+        }
+
+    }
+
+    public Highscore getHighscore() {
+        return highscore;
     }
 }
