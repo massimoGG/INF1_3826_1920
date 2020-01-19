@@ -24,6 +24,10 @@ public class Highscore {
         this.highscore3 = highscore3;
     }
     
+    /**
+     *highscore toevoegen
+     * @param newHighscore
+     */
     public void addHighscore(int newHighscore){
         if (newHighscore > highscore1){
             highscore3 = highscore2;
@@ -39,14 +43,26 @@ public class Highscore {
         }
     }
 
+    /**
+     *getter highscore 1
+     * @return highscore 1
+     */
     public int getHighscore1() {
         return highscore1;
     }
-
+    
+    /**
+     *getter highscore 2
+     * @return highscore 2
+     */
     public int getHighscore2() {
         return highscore2;
     }
-
+    
+    /**
+     *getter highscore 3
+     * @return highscore 3
+     */
     public int getHighscore3() {
         return highscore3;
     }

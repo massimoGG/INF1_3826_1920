@@ -19,6 +19,10 @@ public class Bullet extends Entity {
         }
     }
     
+    /**
+     * is het object van de speler
+     * @return is van player?
+     */
     public boolean isVanPlayer(){
         return isVanPlayer;
     }

@@ -11,7 +11,7 @@ import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Rectangle;
 
 /**
- *
+ *view van de enemy
  * @author michi
  */
 public class EnemyView extends Region{

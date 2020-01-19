@@ -114,13 +114,17 @@ public class GameModel {
     }
 
     /**
-     *
+     * iterator voor de entities 
      * @return entities.iterator()
      */
-    /*public Iterator<Entity> getEntities() {
+    public Iterator<Entity> getEntities() {
         return entities.iterator();
     }
-*/
+
+    /**
+     * arraylijst van entities
+     * @return entities
+     */
     public ArrayList<Entity> getEntitiesArray() {
         return entities;
     }
@@ -237,6 +241,9 @@ public class GameModel {
         }
     }
 
+    /**
+     *stopt het spel
+     */
     public void stopSpel() {
         highscore.addHighscore(player.getScore());
         saveHighscore();
@@ -278,6 +285,11 @@ public class GameModel {
         return upgradeOn;
     }
 
+    /**
+     * beslist wat de upgrade doet
+     * 3 levens bij
+     * of 3kogels op een rij
+     */
     public void upgrade() {
         double upgradeNr = Math.random() * 2;
         upgradeTijd = 0;
@@ -288,11 +300,19 @@ public class GameModel {
         }
     }
 
+    /**
+     * setter voor controller
+     * @param controller
+     */
     public void setController(GameController controller) {
         this.controller = controller;
 
     }
 
+    /**
+     *setter voor de stage
+     * @param stage
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
         player.setY(stage.getHeight() - 150);
@@ -326,6 +346,9 @@ public class GameModel {
         player.setLevens(levens);
     }
 
+    /**
+     *converteerd naar json
+     */
     public void toJson() {
         saving = true;
         saveHighscore();
@@ -349,10 +372,17 @@ public class GameModel {
 
     }
 
+    /**
+     * de savestatus
+     * @return save status
+     */
     public boolean isSaving() {
         return saving;
     }
 
+    /**
+     *lader voor opgeslage spel
+     */
     public void load() {
 
         try {
@@ -387,6 +417,9 @@ public class GameModel {
 
     }
 
+    /**
+     *saver voor de highscores
+     */
     public void saveHighscore() {
         try {
             Gson gsonobject = new Gson();
@@ -401,6 +434,9 @@ public class GameModel {
 
     }
 
+    /**
+     *lader voor highscores
+     */
     public void loadHighscore() {
 
         try {
@@ -415,6 +451,10 @@ public class GameModel {
 
     }
 
+    /**
+     *getter voor highscores
+     * @return highscore
+     */
     public Highscore getHighscore() {
         return highscore;
     }

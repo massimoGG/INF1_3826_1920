@@ -19,6 +19,11 @@ public class GameView extends Region {
     private Entity e;
     private GameController controller;
 
+    /**
+     *constructor voor de view
+     * @param model
+     * @param controller
+     */
     public GameView(GameModel model, GameController controller) {
         this.model = model;
         this.controller = controller;
@@ -26,6 +31,10 @@ public class GameView extends Region {
     }
 
     // Render alle objected die op het scherm moeten verschijnen
+
+    /**
+     *renderd de view
+     */
     public void render() {
         try {
             controller.setTekstScore("Score: " + model.getScore());
@@ -61,6 +70,9 @@ public class GameView extends Region {
         }
     }
 
+    /**
+     *updates highscore
+     */
     public void updateHighscore() {
         Highscore highscore = model.getHighscore();
         controller.setTekstHighscore1("Highscore 1:" + highscore.getHighscore1());

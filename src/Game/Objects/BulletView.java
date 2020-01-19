@@ -11,7 +11,7 @@ import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Rectangle;
 
 /**
- *
+ * de bulletview
  * @author michi
  */
 public class BulletView extends Region{

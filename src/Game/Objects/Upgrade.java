@@ -6,11 +6,19 @@
 package Game.Objects;
 
 /**
- *
+ *klasse upgrade
  * @author royve
  */
 public class Upgrade extends Entity{
     private boolean isUpgrade = true;
+
+    /**
+     *looks upgrade
+     * @param x
+     * @param y
+     * @param breedte
+     * @param hoogte
+     */
     public Upgrade(double x, double y, double breedte, double hoogte) {
         super(x,y, breedte, hoogte);
     }

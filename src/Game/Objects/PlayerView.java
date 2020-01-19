@@ -11,11 +11,16 @@ import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Rectangle;
 
 /**
- *
+ * klasse player view
  * @author michi
  */
 public class PlayerView extends Region{
     private Player p;
+
+    /**
+     *looks van de player
+     * @param p
+     */
     public PlayerView(Player p) {
         this.p = p;
         Polyline pl = new Polyline();
