@@ -14,7 +14,9 @@ public class Core implements Runnable {
     private double random;
     public boolean upgradeOn;
 
-    // Constructor
+    /*
+    constructor voor core,
+    */
     public Core(GameModel model, GameView view, GameController controller) {
         this.model = model;
         this.view = view;
