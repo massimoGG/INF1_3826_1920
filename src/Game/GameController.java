@@ -93,7 +93,7 @@ public class GameController {
                 }
                 
                 // Maximum X
-                model.maxX = (int) paneGame.getWidth() - 10;
+                model.setMaxX(paneGame.getWidth() - 10);
 
                 // Key events nog accepteren wanneer het spel gestart is
                 paneGame.setOnKeyPressed(ev -> {
@@ -125,11 +125,20 @@ public class GameController {
 
     private GameModel model;
     private GameView view;
+    
+    // Zorgt ervoor dat we niet meer dan 1 core thread hebben
     private boolean isRunning = false;
     
-    // ! TO DO FIX DEZE SHIT VOOR KLAGENDE MICHIEL
-    public boolean statusMenu = true;
+    // Zo weet de core als het verder moet "ticken"
+    private boolean statusMenu = true;
     
+    public void setStatus(boolean s) {
+        this.statusMenu = s;
+    }
+    
+    public boolean getStatus() {
+        return this.statusMenu;
+    }
          
     /**
      * laat het menu zien
@@ -160,8 +169,6 @@ public class GameController {
         setTekstHighscore1("Highscore 1:" + highscore.getHighscore1());
         setTekstHighscore2("Highscore 2:" + highscore.getHighscore2());
         setTekstHighscore3("Highscore 3:" + highscore.getHighscore3());
-        
-        
     }
     
     public void setTekstScore(String string){
