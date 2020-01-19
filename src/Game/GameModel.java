@@ -28,20 +28,28 @@ public class GameModel {
     private Entity e;
     private Highscore highscore;
 
-    // Onze speler
+    
+    
+    //de speler
     private static Player player;
 
-    // Afmetingen van het scherm
+    
+    //afmetingen scherm
     private double minX = 0;
     private double maxX;
     
+    
+    //maximale x waarde
     public void setMaxX(double x) {
         this.maxX = x;
     }
 
-    //de upgrade status
+    
+    //upgrade aan of uit
     public boolean upgradeOn;
 
+   
+    //hoelang de upgrade blijft
     private long upgradeTijd;
 
     private boolean saving = false;
@@ -88,7 +96,10 @@ public class GameModel {
         }
 
     }
-
+    
+    /**
+     *reset als speler doodgaat
+     */
     public void reset() {
         /*        player.setLevens(5);
         setScore(0);
@@ -102,10 +113,14 @@ public class GameModel {
         player.setY(stage.getHeight() - 150);
     }
 
-    public Iterator<Entity> getEntities() {
+    /**
+     *
+     * @return entities.iterator()
+     */
+    /*public Iterator<Entity> getEntities() {
         return entities.iterator();
     }
-
+*/
     public ArrayList<Entity> getEntitiesArray() {
         return entities;
     }

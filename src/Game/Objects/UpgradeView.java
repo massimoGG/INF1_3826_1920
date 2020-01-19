@@ -10,11 +10,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Rectangle;
 /**
- *
+ * klasse upgradeview
  * @author royve
  */
 public class UpgradeView extends Region{
     private Upgrade u;
+
+    /**
+     *looks upgrade
+     * @param u
+     */
     public UpgradeView(Upgrade u) {
         this.u = u;
         Polyline pl = new Polyline();
