@@ -28,6 +28,7 @@ public class EntityDeserialiser implements JsonDeserializer<ArrayList> {
 
             JsonElement jLevens = jObject.get("levens");
             JsonElement jIsVanPlayer = jObject.get("isVanPlayer");
+            JsonElement jScore = jObject.get("score");
             JsonElement jX = jObject.get("x");
             JsonElement jY = jObject.get("y");
             JsonElement jDx = jObject.get("dx");
@@ -40,6 +41,7 @@ public class EntityDeserialiser implements JsonDeserializer<ArrayList> {
             if (jLevens != null) {
                 Player p = new Player(jX.getAsInt(), jY.getAsInt());
                 p.setLevens(jLevens.getAsInt());
+                p.setScore(jScore.getAsInt());
                 lijst.add(p);
             } else if (jIsVanPlayer != null) {
                 Bullet b = new Bullet(jX.getAsInt(), jY.getAsInt(), jIsVanPlayer.getAsBoolean());
