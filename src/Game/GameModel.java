@@ -15,8 +15,7 @@ import javafx.stage.Stage;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-// Core van het spel
-// @author Massimo
+
 
 public class GameModel {
 
@@ -33,8 +32,12 @@ public class GameModel {
     private static Player player;
 
     // Afmetingen van het scherm
-    public double minX = 0;
-    public double maxX;
+    private double minX = 0;
+    private double maxX;
+    
+    public void setMaxX(double x) {
+        this.maxX = x;
+    }
 
     //de upgrade status
     public boolean upgradeOn;

@@ -30,7 +30,7 @@ public class Core implements Runnable {
     public void run() {
         int err = 0;
         while (true) {
-            while (!controller.statusMenu) {
+            while (!controller.getStatus()) {
                 try {
                     /**
                      * Wacht even voor geen 100% cpu
