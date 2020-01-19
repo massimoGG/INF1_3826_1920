@@ -15,14 +15,17 @@ public class Core implements Runnable {
     public boolean upgradeOn;
 
     /*
-    constructor voor core,
+    constructor voor core, nog verderre info gevn
     */
     public Core(GameModel model, GameView view, GameController controller) {
         this.model = model;
         this.view = view;
         this.controller = controller;
     }
-
+    
+    /*
+    de threads, tijden plaatsen entities
+    */
     @Override
     public void run() {
         int err = 0;
@@ -35,7 +38,9 @@ public class Core implements Runnable {
                     Thread.sleep(dtime);
                     totalTime = totalTime + dtime;
 
-                    // Run dit in de JavaFX thread
+                    /*
+                    run in JavaFXthread
+                    */
                     Platform.runLater(() -> {
                         view.render();
                     });

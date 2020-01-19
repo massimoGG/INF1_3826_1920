@@ -68,7 +68,9 @@ public class GameController {
         assert lblLevens != null : "fx:id=\"lblLevens\" was not injected: check your FXML file 'FXMLView.fxml'.";
         
         
-        
+        /*
+        startprocedure voor spel
+        */
         btnPlay.setOnAction(e -> {
 
             // Toggle de play knop
@@ -132,7 +134,7 @@ public class GameController {
     
          
     /**
-     * laat het menu zien
+     * status menu !!!MASS ALS JE DEZE VOID AANPAST NAAR EEN BOOLEAN MOET DE JAVADOC OOK AANGEPAST WORDE
      * @param statusMenu
      */
     public void showMenu(boolean statusMenu) {
@@ -149,7 +151,9 @@ public class GameController {
          paneGame.setVisible(true);
          this.statusMenu = statusMenu;
     }
-
+    /*
+    highscores invullen
+    */
     public void setModel(GameModel model) {
         this.model = model;
         //view = new GameView(model);
@@ -163,23 +167,33 @@ public class GameController {
         
         
     }
-    
+    /*
+    setter tekstvak score
+    */
     public void setTekstScore(String string){
         lblScore.setText(string);
     }
-    
+    /*
+    setter tekstvak levens
+    */
     public void setTekstLevens(String string){
         lblLevens.setText(string);
     }
-    
+    /*
+    setter tekstvak highscore1
+    */
     public void setTekstHighscore1(String string){
         lblHS1.setText(string);
     }
-    
+    /*
+    setter tekstvak highscore2
+    */
     public void setTekstHighscore2(String string){
         lblHS2.setText(string);
     }
-    
+    /*
+    setter tekstvak highscore3
+    */
     public void setTekstHighscore3(String string){
         lblHS3.setText(string);
     }

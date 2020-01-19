@@ -12,7 +12,7 @@ import Game.Objects.*;
 import java.util.ArrayList;
 
 /**
- *
+ * deserialises de game code
  * @author Michiel Claes
  */
 public class EntityDeserialiser implements JsonDeserializer<ArrayList> {
